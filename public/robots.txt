@@ -1,0 +1,4 @@
+# Work in progress: placeholder clients, placeholder numbers.
+# TODO[LAUNCH]: allow crawling once the real content is in.
+User-agent: *
+Disallow: /
