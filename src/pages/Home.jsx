@@ -79,7 +79,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="section section--paper">
+      <section className="section section--hatch">
         <div className="wrap">
           <Reveal className="section__head">
             <p className="eyebrow">The problem, plainly</p>
@@ -100,7 +100,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="section wrap">
+      <section className="section wrap section--margin">
         <Reveal className="section__head">
           <p className="eyebrow">Services</p>
           <h2>Four ways to work together.</h2>

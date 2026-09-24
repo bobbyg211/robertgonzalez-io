@@ -140,7 +140,7 @@ export default function HeroFlow() {
         </span>
       </div>
 
-      <div className="diagram__body paper">
+      <div className="diagram__body paper--dots">
         <svg
           ref={svgRef}
           className="flow__svg"

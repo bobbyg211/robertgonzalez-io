@@ -484,30 +484,6 @@ a:hover .is-diag {
   transform: translate(3px, -3px);
 }
 
-// Primary button: a hairline sweeps across the top edge, the way a ruled line
-// gets drawn on the sheet.
-.btn--primary {
-  position: relative;
-  overflow: hidden;
-}
-
-.btn--primary::after {
-  content: "";
-  position: absolute;
-  top: 6px;
-  left: 14px;
-  right: 14px;
-  height: 1px;
-  background: currentColor;
-  opacity: 0.22;
-  clip-path: inset(0 100% 0 0);
-  transition: clip-path 0.5s cubic-bezier(0.22, 0.8, 0.28, 1);
-}
-
-.btn--primary:hover::after {
-  clip-path: inset(0 0 0 0);
-}
-
 // Ghost button picks up the grid on hover — a small reward for pointing at it.
 .btn--ghost {
   background-image: radial-gradient(var(--dot) 0.8px, transparent 0.9px);
@@ -547,24 +523,8 @@ a:hover .is-diag {
   transition: box-shadow 0.25s;
 }
 
-// Service card: a rule draws across the top edge, and the grid fades up
-// underneath. Both are the sheet reacting, not the card lifting off it.
-.service-card::before {
-  content: "";
-  position: absolute;
-  top: -1px;
-  left: 18px;
-  right: 18px;
-  height: 1px;
-  background: var(--flow);
-  clip-path: inset(0 100% 0 0);
-  transition: clip-path 0.55s cubic-bezier(0.22, 0.8, 0.28, 1);
-}
-
-.service-card:hover::before {
-  clip-path: inset(0 0 0 0);
-}
-
+// Service card: the dot field fades up underneath. The sheet reacting, not
+// the card lifting off it.
 .service-card {
   background-image: radial-gradient(var(--dot) 0.9px, transparent 1px);
   background-size: 14px 14px;

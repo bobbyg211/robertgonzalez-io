@@ -34,7 +34,7 @@ export default function Work() {
         </p>
       </PageBanner>
 
-      <section className="wrap section--tight">
+      <section className="wrap section--tight section--ruled">
         <div className="work-filters" role="group" aria-label="Filter case studies">
           {FILTERS.map((f) => (
             <button

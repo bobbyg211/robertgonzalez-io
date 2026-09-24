@@ -615,3 +615,10 @@
     cursor: default;
   }
 }
+
+// A plate sits on the sheet, so it can't wear the sheet's own mark. Diagram
+// bodies get a dot field at half the grid cell — harmonically related to the
+// grid behind them, visually distinct from it.
+.diagram__body.paper--dots {
+  background-size: calc(var(--cell) / 2) calc(var(--cell) / 2);
+}

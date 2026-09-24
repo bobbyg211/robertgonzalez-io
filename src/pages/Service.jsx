@@ -49,7 +49,7 @@ export default function Service() {
         </div>
       </PageBanner>
 
-      <section className="section section--paper">
+      <section className="section section--hatch">
         <div className="wrap split">
           <Reveal>
             <p className="eyebrow">The problem</p>
@@ -100,7 +100,7 @@ export default function Service() {
         </section>
       )}
 
-      <section className="section wrap">
+      <section className="section wrap section--margin">
         <div className="split split--sidebar">
           <div>
             <Reveal className="section__head">
