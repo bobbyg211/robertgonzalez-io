@@ -11,6 +11,7 @@ import Marks from "../components/Marks.jsx";
 import PageBanner from "../components/PageBanner.jsx";
 import Typed from "../components/Typed.jsx";
 import { SheetRule, Plate } from "../components/SectionMarks.jsx";
+import SectionField from "../components/SectionField.jsx";
 import CodeSpecimen from "../components/CodeSpecimen.jsx";
 import HeroFlow from "../components/diagrams/HeroFlow.jsx";
 import BeforeAfter from "../components/diagrams/BeforeAfter.jsx";
@@ -80,11 +81,8 @@ export default function Home() {
         </div>
       </section>
 
-      <div className="wrap">
-        <SheetRule label="fig. 03 — the cost of doing it by hand" cross />
-      </div>
-
-      <section className="section" style={{ paddingTop: 0 }}>
+      <section className="section has-field">
+        <SectionField kind="arcs" fade="corner" />
         <div className="wrap">
           <Reveal className="section__head">
             <Plate no="01" label="the problem" />
@@ -105,11 +103,8 @@ export default function Home() {
         </div>
       </section>
 
-      <div className="wrap">
-        <SheetRule label="what I do" align="left" quiet />
-      </div>
-
-      <section className="section wrap" style={{ paddingTop: 12 }}>
+      <section className="section wrap has-field">
+        <SectionField kind="cross" />
         <Reveal className="section__head">
           <Plate no="02" label="services" />
           <h2>Four ways to work together.</h2>
@@ -159,12 +154,10 @@ export default function Home() {
         </div>
       </section>
 
-      <div className="wrap">
+      <section className="section wrap has-field">
+        <SectionField kind="rays" fade="end" />
         <SheetRule label="fig. 05 — selected plates" cross />
-      </div>
-
-      <section className="section wrap" style={{ paddingTop: 0 }}>
-        <Reveal className="section__head">
+        <Reveal className="section__head" style={{ marginTop: 8 }}>
           <p className="eyebrow">Selected work</p>
           <h2>Case studies.</h2>
           <p>
@@ -196,7 +189,8 @@ export default function Home() {
         </section>
       )}
 
-      <section className="section wrap">
+      <section className="section wrap has-field">
+        <SectionField kind="cross" />
         <div className="split split--sidebar">
           <Reveal>
             <p className="eyebrow">About</p>

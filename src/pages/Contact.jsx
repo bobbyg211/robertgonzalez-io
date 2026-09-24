@@ -4,6 +4,7 @@ import { services, rush, getService } from "../content/services.js";
 import { systems, getSystem } from "../content/systems.js";
 import Reveal from "../components/Reveal.jsx";
 import PageBanner from "../components/PageBanner.jsx";
+import SectionField from "../components/SectionField.jsx";
 import { ArrowRight, Check } from "../components/Icons.jsx";
 
 // A qualifying form, not a single-line contact box. Fewer and better leads is
@@ -105,7 +106,8 @@ export default function Contact() {
         </p>
       </PageBanner>
 
-      <section className="section--tight wrap wrap--narrow" style={{ paddingBottom: 60 }}>
+      <section className="section--tight wrap wrap--narrow has-field" style={{ paddingBottom: 60 }}>
+        <SectionField kind="cross" />
         <form className="form" onSubmit={submit}>
           <div className="split" style={{ gap: 18 }}>
             <div className="field">

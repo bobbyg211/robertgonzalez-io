@@ -9,6 +9,7 @@ import BlueprintPreview from "../components/diagrams/BlueprintPreview.jsx";
 import CodeSpecimen from "../components/CodeSpecimen.jsx";
 import PageBanner from "../components/PageBanner.jsx";
 import { SheetRule, Plate } from "../components/SectionMarks.jsx";
+import SectionField from "../components/SectionField.jsx";
 import { ArrowRight, Check } from "../components/Icons.jsx";
 
 // Same skeleton on all four: the problem, what's delivered, the process, a
@@ -50,7 +51,8 @@ export default function Service() {
         </div>
       </PageBanner>
 
-      <section className="section">
+      <section className="section has-field">
+        <SectionField kind="arcs" fade="corner" />
         <div className="wrap split">
           <Reveal>
             <p className="eyebrow">The problem</p>
@@ -101,11 +103,8 @@ export default function Service() {
         </section>
       )}
 
-      <div className="wrap">
-        <SheetRule label="deliverables" align="left" quiet />
-      </div>
-
-      <section className="section wrap" style={{ paddingTop: 12 }}>
+      <section className="section wrap has-field">
+        <SectionField kind="cross" />
         <div className="split split--sidebar">
           <div>
             <Reveal className="section__head">
@@ -169,7 +168,8 @@ export default function Service() {
       </section>
 
       {study && (
-        <section className="section wrap">
+        <section className="section wrap has-field">
+          <SectionField kind="rays" fade="end" />
           <SheetRule label="fig. 06 — finished example" cross />
           <Reveal className="section__head">
             <p className="eyebrow">Relevant work</p>

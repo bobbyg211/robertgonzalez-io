@@ -389,3 +389,64 @@
     display: none;
   }
 }
+
+// ---------------------------------------------------------------------------
+// Section fields
+// ---------------------------------------------------------------------------
+// Ground for a section, so adjacent sections separate by having different
+// ground rather than by a rule drawn between them. Never the banner's grid —
+// that mark belongs to the sheet header and the diagram plates, and reusing
+// it further down stops it meaning anything.
+.has-field {
+  position: relative;
+  isolation: isolate;
+}
+
+.field {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  overflow: hidden;
+  color: var(--construct);
+
+  svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+}
+
+.field--cross {
+  opacity: 0.5;
+}
+
+.field--arcs {
+  opacity: 0.42;
+}
+
+.field--rays {
+  opacity: 0.3;
+}
+
+.field--fade-y {
+  -webkit-mask-image: linear-gradient(to bottom, transparent, #000 20%, #000 80%, transparent);
+  mask-image: linear-gradient(to bottom, transparent, #000 20%, #000 80%, transparent);
+}
+
+.field--fade-corner {
+  -webkit-mask-image: radial-gradient(90% 110% at 0% 100%, #000 10%, transparent 72%);
+  mask-image: radial-gradient(90% 110% at 0% 100%, #000 10%, transparent 72%);
+}
+
+.field--fade-end {
+  -webkit-mask-image: radial-gradient(85% 120% at 100% 50%, #000 5%, transparent 70%);
+  mask-image: radial-gradient(85% 120% at 100% 50%, #000 5%, transparent 70%);
+}
+
+// On a phone the fields compete with the text rather than sitting under it.
+@media (max-width: 640px) {
+  .field {
+    opacity: 0.3;
+  }
+}

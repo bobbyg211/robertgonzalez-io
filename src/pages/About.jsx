@@ -4,6 +4,7 @@ import { getTestimonial } from "../content/testimonials.js";
 import Quote from "../components/Quote.jsx";
 import Reveal from "../components/Reveal.jsx";
 import PageBanner from "../components/PageBanner.jsx";
+import SectionField from "../components/SectionField.jsx";
 import { ArrowRight } from "../components/Icons.jsx";
 
 export default function About() {
@@ -16,7 +17,8 @@ export default function About() {
         <h1>{aboutLong.heading}</h1>
       </PageBanner>
 
-      <section className="section--tight wrap">
+      <section className="section--tight wrap has-field">
+        <SectionField kind="arcs" fade="corner" />
         <div className="split split--sidebar">
           <Reveal className="body-l" style={{ maxWidth: "62ch" }}>
             {aboutLong.body.map((p) => (

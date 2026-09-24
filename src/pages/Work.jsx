@@ -5,6 +5,7 @@ import { StudyCard } from "../components/Cards.jsx";
 import Reveal from "../components/Reveal.jsx";
 import PageBanner from "../components/PageBanner.jsx";
 import { SheetRule } from "../components/SectionMarks.jsx";
+import SectionField from "../components/SectionField.jsx";
 
 // Integrations and software first, website builds below, everything else as a
 // logo strip at the bottom. The order is the positioning.
@@ -85,8 +86,8 @@ export default function Work() {
         {shown.length === 0 && <p className="muted">Nothing in that category yet.</p>}
       </section>
 
-      <section className="section--tight wrap" style={{ paddingBottom: 40 }}>
-        <SheetRule label="and the rest" align="left" quiet />
+      <section className="section--tight wrap has-field" style={{ paddingBottom: 40 }}>
+        <SectionField kind="cross" />
         <p className="eyebrow">And the rest</p>
         <h3 style={{ maxWidth: "20ch" }}>Websites built for 20+ organisations.</h3>
         {/* TODO[NEEDS ROBERT]: replace these descriptors with the real client list,
