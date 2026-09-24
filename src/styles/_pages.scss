@@ -394,11 +394,12 @@
   justify-content: space-between;
   gap: 12px;
   width: 100%;
-  padding: 16px 20px;
+  padding: 17px 22px;
   border: none;
   background: none;
   text-align: left;
   cursor: pointer;
+  transition: padding-bottom 0.3s cubic-bezier(0.22, 0.8, 0.28, 1);
   font-family: var(--display);
   font-weight: 600;
   font-size: 0.97rem;
@@ -418,6 +419,12 @@
   transform: rotate(-90deg);
 }
 
+// Tightens the gap between the bar and the body once it's open, so the two
+// read as one block rather than as two stacked ones.
+.disc.is-open .disc__summary {
+  padding-bottom: 13px;
+}
+
 // 0fr to 1fr animates to the content's real height without measuring it.
 .disc__panel {
   display: grid;
@@ -433,14 +440,29 @@
   overflow: hidden;
 }
 
-.disc__inner > * {
-  margin: 0 20px 18px;
-  font-size: 0.92rem;
+// Padding lives here rather than on the children, so the panel collapses to a
+// true zero height instead of to the height of its own margins.
+.disc__body {
+  padding: 0 22px 20px;
+  // The bar runs the full width of the page; the prose inside it shouldn't.
+  max-width: 68ch;
+  font-size: 0.94rem;
+  line-height: 1.6;
   color: var(--ink-2);
 }
 
-.disc__inner > *:first-child {
-  padding-top: 2px;
+.disc__body > * {
+  margin: 0;
+}
+
+.disc__body > * + * {
+  margin-top: 14px;
+}
+
+// Standalone, under a CTA block. Inside the contact form the form's own grid
+// gap handles it, so the modifier isn't applied there.
+.disc--spaced {
+  margin-top: clamp(28px, 4vw, 44px);
 }
 
 .form__sent {

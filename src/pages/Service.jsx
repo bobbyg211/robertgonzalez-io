@@ -231,7 +231,7 @@ export default function Service() {
             )}
           </div>
 
-          <Disclosure summary={rush.summary} className="disc--rush">
+          <Disclosure summary={rush.summary} className="disc--rush disc--spaced">
             <p>{rush.body}</p>
           </Disclosure>
         </Reveal>

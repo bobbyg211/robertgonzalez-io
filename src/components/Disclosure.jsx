@@ -24,7 +24,9 @@ export default function Disclosure({ summary, children, className = "" }) {
       </button>
 
       <div className="disc__panel">
-        <div className="disc__inner">{children}</div>
+        <div className="disc__inner">
+          <div className="disc__body">{children}</div>
+        </div>
       </div>
     </div>
   );

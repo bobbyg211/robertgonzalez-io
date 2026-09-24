@@ -106,7 +106,7 @@ export default function Services() {
           </Link>
         </Reveal>
 
-        <Disclosure summary={rush.summary} className="disc--rush">
+        <Disclosure summary={rush.summary} className="disc--rush disc--spaced">
           <p>{rush.body}</p>
         </Disclosure>
       </section>
