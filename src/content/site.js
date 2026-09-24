@@ -22,8 +22,15 @@ export const hero = {
 export const proofStats = [
   { value: 10, suffix: "+", label: "years building for operations teams" },
   { value: 20, suffix: "+", label: "organizations shipped for" },
-  { value: 12, suffix: "", label: "platforms integrated end to end" },
 ];
+
+// The systems are the evidence for this number, so the number introduces them
+// rather than sitting in a separate column with no stated relationship.
+export const systemsProof = {
+  value: 12,
+  suffix: "",
+  label: "platforms integrated end to end",
+};
 
 // TODO[DECISION]: these are the systems, not clients. The brief kills the logo
 // wall as a hero element, so this reads as "what I work in", low in the page.

@@ -275,27 +275,35 @@
 }
 
 // ---- proof strip ----
+// Two registers on one left edge: the track-record numbers, then the systems
+// count with the systems themselves underneath it. The list is the evidence
+// for the number, so the number has to introduce it — previously they sat in
+// opposite corners with nothing said about the relationship.
 .proof {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 18px 34px;
-  padding: 22px 0;
+  display: grid;
+  gap: 26px;
+  padding: 24px 0;
   border-block: 1px solid var(--line);
 }
 
 .proof__stats {
   display: flex;
-  gap: 30px;
+  gap: 18px 44px;
   flex-wrap: wrap;
+}
+
+.proof__systems {
+  display: grid;
+  gap: 14px;
+  padding-top: 22px;
+  border-top: 1px dashed var(--line);
 }
 
 .proof__logos {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: 10px 14px;
-  margin-left: auto;
+  gap: 8px;
 }
 
 .logo-chip {

@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { hero, proofStats, systemsWorkedIn, aboutShort } from "../content/site.js";
+import { hero, proofStats, systemsProof, systemsWorkedIn, aboutShort } from "../content/site.js";
 import { services } from "../content/services.js";
 import { featuredStudies } from "../content/caseStudies.js";
 import { getTestimonial } from "../content/testimonials.js";
@@ -68,15 +68,20 @@ export default function Home() {
               </span>
             ))}
           </div>
-          <div className="proof__logos">
-            {systemsWorkedIn.slice(0, 6).map((s) => (
-              <span className="logo-chip" key={s}>
-                {s}
+          <div className="proof__systems">
+            <span className="stat">
+              <span className="stat__value">
+                <Counter value={systemsProof.value} suffix={systemsProof.suffix} />
               </span>
-            ))}
-            <span className="logo-chip" style={{ borderStyle: "dashed" }}>
-              +{systemsWorkedIn.length - 6} more
+              <span className="stat__label">{systemsProof.label}</span>
             </span>
+            <div className="proof__logos">
+              {systemsWorkedIn.map((s) => (
+                <span className="logo-chip" key={s}>
+                  {s}
+                </span>
+              ))}
+            </div>
           </div>
         </div>
       </section>
