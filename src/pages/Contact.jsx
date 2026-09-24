@@ -3,6 +3,7 @@ import { useSearchParams } from "react-router-dom";
 import { services, rush, getService } from "../content/services.js";
 import { systems, getSystem } from "../content/systems.js";
 import Reveal from "../components/Reveal.jsx";
+import Disclosure from "../components/Disclosure.jsx";
 import PageBanner from "../components/PageBanner.jsx";
 import SectionField from "../components/SectionField.jsx";
 import { ArrowRight, Check } from "../components/Icons.jsx";
@@ -240,8 +241,7 @@ export default function Contact() {
 
           {/* Rush lives inside the inquiry flow, is never a published turnaround,
               and is only real once the work is scoped. */}
-          <details className="form__rush">
-            <summary>{rush.summary}</summary>
+          <Disclosure summary={rush.summary} className="disc--rush">
             <p>{rush.body}</p>
             <label className="opt" style={{ display: "inline-block", marginTop: 14 }}>
               <input
@@ -251,7 +251,7 @@ export default function Contact() {
               />
               <span>There&rsquo;s a date this has to hit</span>
             </label>
-          </details>
+          </Disclosure>
 
           {error && <p className="form__err">{error}</p>}
 

@@ -5,6 +5,7 @@ import { getTestimonial, quoteForService } from "../content/testimonials.js";
 import { StudyCard } from "../components/Cards.jsx";
 import Quote from "../components/Quote.jsx";
 import Reveal from "../components/Reveal.jsx";
+import Disclosure from "../components/Disclosure.jsx";
 import BlueprintPreview from "../components/diagrams/BlueprintPreview.jsx";
 import CodeSpecimen from "../components/CodeSpecimen.jsx";
 import PageBanner from "../components/PageBanner.jsx";
@@ -230,10 +231,9 @@ export default function Service() {
             )}
           </div>
 
-          <details className="form__rush" style={{ marginTop: 22 }}>
-            <summary>{rush.summary}</summary>
+          <Disclosure summary={rush.summary} className="disc--rush">
             <p>{rush.body}</p>
-          </details>
+          </Disclosure>
         </Reveal>
       </section>
 

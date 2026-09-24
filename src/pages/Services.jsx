@@ -4,6 +4,7 @@ import { ServiceCard } from "../components/Cards.jsx";
 import PageBanner from "../components/PageBanner.jsx";
 import SectionField from "../components/SectionField.jsx";
 import Reveal from "../components/Reveal.jsx";
+import Disclosure from "../components/Disclosure.jsx";
 import { Plate } from "../components/SectionMarks.jsx";
 import { ArrowRight } from "../components/Icons.jsx";
 
@@ -105,10 +106,9 @@ export default function Services() {
           </Link>
         </Reveal>
 
-        <details className="form__rush" style={{ marginTop: 22 }}>
-          <summary>{rush.summary}</summary>
+        <Disclosure summary={rush.summary} className="disc--rush">
           <p>{rush.body}</p>
-        </details>
+        </Disclosure>
       </section>
     </>
   );
