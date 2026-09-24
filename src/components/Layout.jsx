@@ -9,6 +9,8 @@ function Nav() {
   // The sheet is two levels: the top level, and the services submenu. Listing
   // all four services at the top level buried Work and About below the fold.
   const [view, setView] = useState("root");
+  // Which way the panel should travel: into the submenu, or back out of it.
+  const [dir, setDir] = useState("");
   const [stuck, setStuck] = useState(false);
   const { pathname } = useLocation();
 
@@ -19,7 +21,10 @@ function Nav() {
   // Reset to the top level once the sheet has closed, not while it's closing.
   useEffect(() => {
     if (open) return;
-    const t = setTimeout(() => setView("root"), 200);
+    const t = setTimeout(() => {
+      setView("root");
+      setDir("");
+    }, 260);
     return () => clearTimeout(t);
   }, [open]);
 
@@ -94,14 +99,21 @@ function Nav() {
         </div>
       </header>
 
-      {open && (
-        <div className="nav__sheet" id="nav-sheet">
+      <div
+        className={`nav__sheet ${open ? "is-open" : ""}`.trim()}
+        id="nav-sheet"
+        aria-hidden={!open}
+      >
+        <div className={`nav__panel ${dir ? `nav__panel--${dir}` : ""}`.trim()} key={view}>
           {view === "root" ? (
             <>
               <button
                 type="button"
                 className="nav__row nav__row--parent"
-                onClick={() => setView("services")}
+                onClick={() => {
+                  setDir("fwd");
+                  setView("services");
+                }}
                 aria-expanded={false}
               >
                 Services
@@ -119,7 +131,14 @@ function Nav() {
             </>
           ) : (
             <>
-              <button type="button" className="nav__back" onClick={() => setView("root")}>
+              <button
+                type="button"
+                className="nav__back"
+                onClick={() => {
+                  setDir("back");
+                  setView("root");
+                }}
+              >
                 <Chevron className="nav__back-arrow" />
                 Services
               </button>
@@ -135,7 +154,7 @@ function Nav() {
             </>
           )}
         </div>
-      )}
+      </div>
     </>
   );
 }

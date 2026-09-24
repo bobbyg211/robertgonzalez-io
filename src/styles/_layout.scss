@@ -134,10 +134,90 @@
   padding: 8px var(--gutter) calc(24px + env(safe-area-inset-bottom));
   display: flex;
   flex-direction: column;
-  gap: 2px;
   overflow-y: auto;
   overscroll-behavior: contain;
   z-index: 59;
+
+  // Rendered always so it can animate out as well as in. visibility keeps it
+  // out of the tab order while it's closed.
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-10px);
+  pointer-events: none;
+  transition: opacity 0.2s ease, transform 0.28s cubic-bezier(0.22, 0.8, 0.28, 1),
+    visibility 0.28s;
+}
+
+.nav__sheet.is-open {
+  opacity: 1;
+  visibility: visible;
+  transform: none;
+  pointer-events: auto;
+}
+
+// Re-keyed on every view change, so the animation runs on each mount. The
+// direction class decides which way it travels — into the submenu, or back.
+.nav__panel {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  gap: 2px;
+  animation: panel-fade 0.26s cubic-bezier(0.22, 0.8, 0.28, 1) both;
+}
+
+.nav__panel--fwd {
+  animation-name: panel-fwd;
+}
+
+.nav__panel--back {
+  animation-name: panel-back;
+}
+
+@keyframes panel-fade {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+}
+
+@keyframes panel-fwd {
+  from {
+    opacity: 0;
+    transform: translateX(22px);
+  }
+}
+
+@keyframes panel-back {
+  from {
+    opacity: 0;
+    transform: translateX(-22px);
+  }
+}
+
+// Rows arrive just behind the panel, close enough to read as one movement.
+.nav__panel > * {
+  animation: row-in 0.3s cubic-bezier(0.22, 0.8, 0.28, 1) both;
+}
+
+.nav__panel > *:nth-child(1) { animation-delay: 0.03s; }
+.nav__panel > *:nth-child(2) { animation-delay: 0.06s; }
+.nav__panel > *:nth-child(3) { animation-delay: 0.09s; }
+.nav__panel > *:nth-child(4) { animation-delay: 0.12s; }
+.nav__panel > *:nth-child(5) { animation-delay: 0.15s; }
+.nav__panel > *:nth-child(6) { animation-delay: 0.18s; }
+
+@keyframes row-in {
+  from {
+    opacity: 0;
+    transform: translateY(7px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nav__panel,
+  .nav__panel > * {
+    animation: none;
+  }
 }
 
 .nav__row {
@@ -204,7 +284,7 @@
 
 // The header CTA is desktop only — on a phone it crushed the wordmark and
 // duplicated the button already sitting at the bottom of the sheet.
-.nav__cta {
+.btn.nav__cta {
   display: none;
 }
 
@@ -212,7 +292,7 @@
   .nav__links {
     display: flex;
   }
-  .nav__cta {
+  .btn.nav__cta {
     display: inline-flex;
     padding: 10px 18px;
   }
