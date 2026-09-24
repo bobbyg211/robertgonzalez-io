@@ -38,7 +38,8 @@ function Projection() {
       <span className="proj__v proj__v--l" />
       <span className="proj__v proj__v--r" />
       <span className="proj__h" />
-      <span className="proj__x proj__x--tl" />
+      {/* One tick, on the right. Two read as symmetry, which a projection
+          guide isn't — it carries a point in one direction. */}
       <span className="proj__x proj__x--tr" />
     </>
   );
