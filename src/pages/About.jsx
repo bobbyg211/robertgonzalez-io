@@ -1,14 +1,10 @@
 import { Link } from "react-router-dom";
 import { aboutLong } from "../content/site.js";
-import { getTestimonial } from "../content/testimonials.js";
-import Quote from "../components/Quote.jsx";
 import Reveal from "../components/Reveal.jsx";
 import PageBanner from "../components/PageBanner.jsx";
 import { ArrowRight } from "../components/Icons.jsx";
 
 export default function About() {
-  const peer = getTestimonial("peer-engineering");
-
   return (
     <>
       <PageBanner sheet="05" label="about">
@@ -50,14 +46,6 @@ export default function About() {
           </Reveal>
         </div>
       </section>
-
-      {peer && (
-        <section className="section wrap">
-          <Reveal style={{ maxWidth: 760 }}>
-            <Quote quote={peer} />
-          </Reveal>
-        </section>
-      )}
 
       <section className="section--tight wrap">
         <Reveal className="study__cta">

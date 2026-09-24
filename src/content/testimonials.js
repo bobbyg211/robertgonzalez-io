@@ -33,7 +33,7 @@ export const testimonials = [
     title: "[TITLE]",
     company: "Direct Development",
     relationship: "Engineering colleague",
-    placement: "about + integration pages",
+    placement: "custom web apps service page",
     todo: "TODO[NEEDS ROBERT]: a current colleague who can speak to the platform and integration work.",
   },
   {
