@@ -1090,3 +1090,59 @@ a:hover .is-diag {
     animation: none;
   }
 }
+
+// ---------------------------------------------------------------------------
+// Paired service
+// ---------------------------------------------------------------------------
+// Integrations and custom apps usually arrive as one project. That's the most
+// useful thing a reader of either page can be told, so it sits in the rail
+// under the price rather than at the bottom with the other services.
+.pair-card {
+  display: grid;
+  gap: 6px;
+  padding: 20px;
+  border-radius: var(--radius);
+  border: 1px dashed color-mix(in srgb, var(--flow) 32%, var(--line));
+  background: var(--flow-soft);
+  text-decoration: none;
+  transition: border-color 0.18s, transform 0.18s;
+
+  &:hover {
+    border-color: var(--flow);
+    transform: translateY(-2px);
+  }
+
+  .annot {
+    color: var(--flow-2);
+
+    &::before {
+      border-color: currentColor;
+    }
+  }
+}
+
+.pair-card__name {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--display);
+  font-weight: 600;
+  font-size: 1.05rem;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+
+  svg {
+    color: var(--flow-2);
+    transition: transform 0.22s cubic-bezier(0.22, 0.8, 0.28, 1);
+  }
+}
+
+.pair-card:hover .pair-card__name svg {
+  transform: translateX(3px);
+}
+
+.pair-card__note {
+  font-size: 0.9rem;
+  line-height: 1.5;
+  color: var(--ink-2);
+}

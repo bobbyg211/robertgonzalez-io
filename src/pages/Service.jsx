@@ -26,6 +26,11 @@ export default function Service() {
   const quote = getTestimonial(quoteForService[slug]);
   const nextService = getService(service.next?.slug);
   const isBlueprint = slug === "integration-blueprint";
+  const pair = getService(service.pairsWith);
+  // Whatever this service pairs with leads the row; the rest keep their order.
+  const others = services
+    .filter((s) => s.slug !== slug)
+    .sort((a, b) => (a.slug === service.pairsWith ? -1 : b.slug === service.pairsWith ? 1 : 0));
 
   // Code appears on two of the four service pages. Sprinkled, not standard —
   // a specimen on every page stops being an aside and becomes the argument.
@@ -55,7 +60,7 @@ export default function Service() {
         <SectionField kind="projection" side="left" fade="y" />
         <div className="wrap split">
           <Reveal>
-            <p className="eyebrow">The problem</p>
+            <Plate no="01" label="the problem" />
             <h2>{service.problem.heading}</h2>
           </Reveal>
           <Reveal delay={80} className="body-l">
@@ -138,6 +143,18 @@ export default function Service() {
                 </li>
               ))}
             </ul>
+
+            {pair && (
+              <Link to={`/services/${pair.slug}`} className="pair-card">
+                <span className="annot" style={{ marginBottom: 10 }}>
+                  Usually the same project
+                </span>
+                <span className="pair-card__name">
+                  {pair.name} <ArrowRight />
+                </span>
+                <span className="pair-card__note">{pair.card}</span>
+              </Link>
+            )}
           </Reveal>
         </div>
 
@@ -186,7 +203,7 @@ export default function Service() {
             label="worked example"
           />
           <Reveal className="section__head">
-            <p className="eyebrow">Relevant work</p>
+            <Plate no="04" label="relevant work" />
             <h2>What this looks like finished.</h2>
           </Reveal>
           <Reveal style={{ maxWidth: 560 }}>
@@ -212,30 +229,26 @@ export default function Service() {
               </Link>
             )}
           </div>
-        </Reveal>
-      </section>
 
-      <section className="section--tight wrap" style={{ paddingTop: 0 }}>
-        <details className="form__rush">
-          <summary>{rush.summary}</summary>
-          <p>{rush.body}</p>
-        </details>
+          <details className="form__rush" style={{ marginTop: 22 }}>
+            <summary>{rush.summary}</summary>
+            <p>{rush.body}</p>
+          </details>
+        </Reveal>
       </section>
 
       <section className="section--tight wrap">
         <p className="eyebrow">Other services</p>
         <div className="card-grid" style={{ marginTop: 6 }}>
-          {services
-            .filter((s) => s.slug !== slug)
-            .map((s) => (
+          {others.map((s) => (
               <Link key={s.slug} to={`/services/${s.slug}`} className="card service-card">
                 <h3>{s.name}</h3>
                 <p>{s.card}</p>
                 <span className="service-card__foot">
                   <span className="service-card__price">{s.price}</span>
                 </span>
-              </Link>
-            ))}
+            </Link>
+          ))}
         </div>
       </section>
     </>
