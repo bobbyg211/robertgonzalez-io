@@ -28,11 +28,32 @@ function Nav() {
           </Link>
 
           <nav className="nav__links" aria-label="Main">
-            {navLinks.map((l) => (
-              <NavLink key={l.to} to={l.to} className="nav__link">
-                {l.label}
-              </NavLink>
-            ))}
+            {navLinks.map((l) =>
+              l.to === "/services" ? (
+                // Services keeps its own page and gains a menu, because the
+                // four of them were otherwise reachable only from the footer.
+                <span className="nav__group" key={l.to}>
+                  <NavLink to={l.to} className="nav__link">
+                    {l.label}
+                  </NavLink>
+                  <span className="nav__menu">
+                    {services.map((svc) => (
+                      <Link key={svc.slug} to={`/services/${svc.slug}`} className="nav__menu-item">
+                        <span className="nav__menu-name">{svc.name}</span>
+                        <span className="nav__menu-note">{svc.kicker}</span>
+                      </Link>
+                    ))}
+                    <Link to="/services" className="nav__menu-all">
+                      All services <ArrowRight />
+                    </Link>
+                  </span>
+                </span>
+              ) : (
+                <NavLink key={l.to} to={l.to} className="nav__link">
+                  {l.label}
+                </NavLink>
+              )
+            )}
           </nav>
 
           <Link to="/contact" className="btn btn--primary" style={{ padding: "10px 18px" }}>
@@ -58,6 +79,7 @@ function Nav() {
               {s.name}
             </Link>
           ))}
+          <Link to="/services">All services</Link>
           <Link to="/work">Work</Link>
           <Link to="/about">About</Link>
           <Link to="/contact" className="btn btn--primary btn--block">

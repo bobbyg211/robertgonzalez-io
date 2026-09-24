@@ -224,3 +224,99 @@
     gap: 40px;
   }
 }
+
+// ---- services menu ----
+// A hover/focus menu rather than a click one: it's four links, and the parent
+// is a real page in its own right, so nothing here is the only way through.
+.nav__group {
+  position: relative;
+  display: inline-flex;
+}
+
+.nav__menu {
+  position: absolute;
+  top: calc(100% + 10px);
+  left: -8px;
+  z-index: 70;
+  min-width: 268px;
+  display: grid;
+  gap: 2px;
+  padding: 8px;
+  border-radius: var(--radius);
+  border: 1px solid var(--line);
+  background: var(--surface);
+  box-shadow: var(--shadow-l);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-5px);
+  transition: opacity 0.16s, transform 0.16s, visibility 0.16s;
+}
+
+.nav__group:hover .nav__menu,
+.nav__group:focus-within .nav__menu {
+  opacity: 1;
+  visibility: visible;
+  transform: none;
+}
+
+// Bridges the gap between link and panel so the menu doesn't close as the
+// pointer travels down to it.
+.nav__group::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  height: 12px;
+}
+
+.nav__menu-item {
+  display: grid;
+  gap: 1px;
+  padding: 9px 11px;
+  border-radius: var(--radius-s);
+  text-decoration: none;
+  transition: background 0.14s;
+
+  &:hover {
+    background: var(--canvas-2);
+  }
+}
+
+.nav__menu-name {
+  font-family: var(--display);
+  font-weight: 600;
+  font-size: 0.93rem;
+  letter-spacing: -0.015em;
+}
+
+.nav__menu-note {
+  font-family: var(--mono);
+  font-size: 0.64rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--faint);
+}
+
+.nav__menu-all {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 4px;
+  padding: 10px 11px 4px;
+  border-top: 1px solid var(--line-2);
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--flow-2);
+  text-decoration: none;
+
+  svg {
+    transition: transform 0.2s;
+  }
+
+  &:hover svg {
+    transform: translateX(3px);
+  }
+}

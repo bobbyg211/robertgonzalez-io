@@ -75,7 +75,7 @@ export const aboutLong = {
 };
 
 export const navLinks = [
-  { to: "/services/system-integrations", label: "Services" },
+  { to: "/services", label: "Services" },
   { to: "/work", label: "Work" },
   { to: "/about", label: "About" },
 ];

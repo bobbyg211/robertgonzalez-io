@@ -1,6 +1,7 @@
 import { Routes, Route } from "react-router-dom";
 import Layout from "./components/Layout.jsx";
 import Home from "./pages/Home.jsx";
+import Services from "./pages/Services.jsx";
 import Service from "./pages/Service.jsx";
 import Work from "./pages/Work.jsx";
 import CaseStudy from "./pages/CaseStudy.jsx";
@@ -13,6 +14,7 @@ export default function App() {
     <Layout>
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/services" element={<Services />} />
         <Route path="/services/:slug" element={<Service />} />
         <Route path="/work" element={<Work />} />
         <Route path="/work/:slug" element={<CaseStudy />} />
