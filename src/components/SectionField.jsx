@@ -32,15 +32,15 @@ function Crosses() {
 // of a drawing into the next. They're pinned to the content column's own
 // edges, so they extend the text block rather than sitting at arbitrary
 // percentages — which is the difference between deliberate and random.
-function Projection() {
+// `side` picks which column edge the guide runs down. One vertical, not two —
+// a pair reads as a frame, which is a different device and already in use.
+function Projection({ side = "right" }) {
+  const s = side === "left" ? "l" : "r";
   return (
     <>
-      <span className="proj__v proj__v--l" />
-      <span className="proj__v proj__v--r" />
+      <span className={`proj__v proj__v--${s}`} />
       <span className="proj__h" />
-      {/* One tick, on the right. Two read as symmetry, which a projection
-          guide isn't — it carries a point in one direction. */}
-      <span className="proj__x proj__x--tr" />
+      <span className={`proj__x proj__x--t${s}`} />
     </>
   );
 }
@@ -63,11 +63,11 @@ function Frame({ label }) {
 
 const KINDS = { cross: Crosses, projection: Projection, frame: Frame };
 
-export default function SectionField({ kind = "cross", fade = "y", label }) {
+export default function SectionField({ kind = "cross", fade = "y", label, side }) {
   const Field = KINDS[kind] || Crosses;
   return (
     <span className={`field field--${kind} field--fade-${fade}`} aria-hidden="true">
-      <Field label={label} />
+      <Field label={label} side={side} />
     </span>
   );
 }

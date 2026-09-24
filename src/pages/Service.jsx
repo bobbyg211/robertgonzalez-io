@@ -52,7 +52,7 @@ export default function Service() {
       </PageBanner>
 
       <section className="section has-field">
-        <SectionField kind="projection" fade="y" />
+        <SectionField kind="projection" side="left" fade="y" />
         <div className="wrap split">
           <Reveal>
             <p className="eyebrow">The problem</p>

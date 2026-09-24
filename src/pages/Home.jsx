@@ -82,7 +82,7 @@ export default function Home() {
       </section>
 
       <section className="section has-field">
-        <SectionField kind="projection" fade="y" />
+        <SectionField kind="projection" side="right" fade="y" />
         <div className="wrap">
           <Reveal className="section__head">
             <Plate no="01" label="the problem" />
