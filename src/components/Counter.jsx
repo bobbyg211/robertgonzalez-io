@@ -4,7 +4,16 @@ import { useInView, useReducedMotion } from "../hooks/useMotion.js";
 // Counters only animate numbers that are real. Every value rendered here comes
 // from content marked TODO[INVENTED] until Robert replaces it — the animation
 // is what makes a number feel verified, so an invented one is worse than none.
-export default function Counter({ value, suffix = "", prefix = "", duration = 1100, className = "" }) {
+const COMPACT = new Intl.NumberFormat("en", { notation: "compact", maximumFractionDigits: 1 });
+
+export default function Counter({
+  value,
+  suffix = "",
+  prefix = "",
+  duration = 1100,
+  format,
+  className = "",
+}) {
   const [ref, inView] = useInView({ threshold: 0.5 });
   const reduced = useReducedMotion();
   const [shown, setShown] = useState(0);
@@ -34,7 +43,7 @@ export default function Counter({ value, suffix = "", prefix = "", duration = 11
   return (
     <span ref={ref} className={className}>
       {prefix}
-      {shown.toLocaleString()}
+      {format === "compact" ? COMPACT.format(shown) : shown.toLocaleString()}
       {suffix}
     </span>
   );

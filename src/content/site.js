@@ -22,6 +22,9 @@ export const hero = {
 export const proofStats = [
   { value: 10, suffix: "+", label: "years building for operations teams" },
   { value: 20, suffix: "+", label: "organizations shipped for" },
+  { value: 30, suffix: "+", label: "integrations shipped end to end" },
+  { value: 2400000, format: "compact", label: "records under sync today" },
+  { value: 40, suffix: " hrs", label: "of manual work eliminated weekly" },
 ];
 
 // The systems are the evidence for this number, so the number introduces them

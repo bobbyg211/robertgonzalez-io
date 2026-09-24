@@ -18,7 +18,7 @@ fiction:
 
 | Where | File | What |
 |---|---|---|
-| Home proof strip | `src/content/site.js` | 10+ years, 20+ organizations, 12 platforms |
+| Home proof strip | `src/content/site.js` | 10+ years, 20+ orgs, 30+ integrations, 2.4M records, 40 hrs/wk, 12 platforms |
 | Distributor study | `src/content/caseStudies.js` | 41,000 records, 11 hrs/wk, 15 min, 0 stale quotes |
 | Brokerage study | `src/content/caseStudies.js` | 3→1 systems, 6 hrs/wk, 100% audit, 9 scenarios |
 | Field service study | `src/content/caseStudies.js` | 40 crews, 11→0 tabs, 100% attributable, 10 wks |

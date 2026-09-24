@@ -287,9 +287,9 @@
 }
 
 .proof__stats {
-  display: flex;
-  gap: 18px 44px;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(152px, 1fr));
+  gap: 22px 28px;
 }
 
 .proof__systems {

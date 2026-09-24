@@ -62,7 +62,7 @@ export default function Home() {
             {proofStats.map((s) => (
               <span className="stat" key={s.label}>
                 <span className="stat__value">
-                  <Counter value={s.value} suffix={s.suffix} />
+                  <Counter value={s.value} suffix={s.suffix} format={s.format} />
                 </span>
                 <span className="stat__label">{s.label}</span>
               </span>
