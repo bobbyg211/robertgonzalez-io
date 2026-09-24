@@ -313,7 +313,8 @@
 
 // ---- quote ----
 .quote {
-  border-left: 2px solid var(--flow);
+  // No border here. The rule is the ::before, which is the one that draws
+  // itself in — a border as well just puts a second line alongside it.
   padding: 4px 0 4px 22px;
   display: grid;
   gap: 14px;
@@ -351,7 +352,6 @@
 }
 
 .quote--card {
-  border-left: none;
 
 
   padding: 26px;
@@ -659,11 +659,6 @@ a:hover .is-diag {
 }
 
 // Quote: the rule redraws itself downward when you read it.
-.quote {
-  border-left-color: var(--line);
-  transition: border-color 0.4s;
-}
-
 .quote::before {
   content: "";
   position: absolute;

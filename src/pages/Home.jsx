@@ -187,8 +187,8 @@ export default function Home() {
 
       {clientQuote && (
         <section className="section--tight wrap">
-          <Reveal style={{ maxWidth: 760 }}>
-            <Quote quote={clientQuote} />
+          <Reveal style={{ maxWidth: 760, marginInline: "auto" }}>
+            <Quote quote={clientQuote} card />
           </Reveal>
         </section>
       )}
