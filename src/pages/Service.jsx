@@ -138,18 +138,21 @@ export default function Service() {
                 </li>
               ))}
             </ul>
-
           </Reveal>
         </div>
-      </section>
 
-      {quote && (
-        <section className="section--tight wrap">
-          <Reveal style={{ maxWidth: 720 }}>
+        {quote && (
+          <Reveal
+            style={{
+              maxWidth: 720,
+              marginInline: "auto",
+              marginTop: "clamp(34px, 5vw, 58px)",
+            }}
+          >
             <Quote quote={quote} card />
           </Reveal>
-        </section>
-      )}
+        )}
+      </section>
 
       <section className="section section--tinted">
         <div className="wrap split">

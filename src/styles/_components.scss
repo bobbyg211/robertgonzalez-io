@@ -353,9 +353,6 @@
 .quote--card {
   border-left: none;
 
-  &::before {
-    content: none;
-  }
 
   padding: 26px;
   background: var(--surface);
@@ -684,6 +681,10 @@ a:hover .is-diag {
 }
 
 .is-in .quote::before,
+.quote.quote--card::before {
+  content: none;
+}
+
 .quote.is-in::before,
 .quote:hover::before {
   clip-path: inset(0 0 0 0);
