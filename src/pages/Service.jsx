@@ -139,10 +139,17 @@ export default function Service() {
               ))}
             </ul>
 
-            {quote && <Quote quote={quote} card />}
           </Reveal>
         </div>
       </section>
+
+      {quote && (
+        <section className="section--tight wrap">
+          <Reveal style={{ maxWidth: 720 }}>
+            <Quote quote={quote} card />
+          </Reveal>
+        </section>
+      )}
 
       <section className="section section--tinted">
         <div className="wrap split">
