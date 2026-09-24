@@ -539,3 +539,96 @@
 .chooser__row:hover .chooser__to svg {
   transform: translateX(3px);
 }
+
+// ---- brand marks (temporary working page) ----
+.mark-row {
+  display: grid;
+  gap: 20px;
+  padding: 26px 0;
+  border-bottom: 1px solid var(--line);
+
+  &:last-child {
+    border-bottom: none;
+  }
+}
+
+.mark-row__head {
+  display: grid;
+  gap: 2px;
+}
+
+.mark-row__why {
+  color: var(--muted);
+  font-size: 0.94rem;
+  max-width: 62ch;
+  margin: 0;
+}
+
+.mark-row__body {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  flex-wrap: wrap;
+}
+
+.mark-sizes {
+  display: flex;
+  align-items: flex-end;
+  gap: 24px;
+  padding: 18px 24px;
+  border: 1px dashed var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+}
+
+.mark-size {
+  display: grid;
+  justify-items: center;
+  gap: 9px;
+  color: var(--ink);
+
+  span {
+    font-family: var(--mono);
+    font-size: 0.6rem;
+    color: var(--faint);
+  }
+}
+
+// Inverted: a mark has to survive a dark tab bar as well as a light page.
+.mark-ink {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 18px 22px;
+  border-radius: var(--radius);
+  background: var(--ink);
+  color: var(--canvas);
+
+  .mark-lock b {
+    color: var(--canvas);
+  }
+}
+
+.mark-fav {
+  width: 34px;
+  height: 34px;
+  border-radius: 8px;
+  display: grid;
+  place-items: center;
+  background: var(--ink);
+  border: 1px solid rgba(250, 250, 247, 0.16);
+}
+
+.mark-lock {
+  display: inline-flex;
+  align-items: center;
+  gap: 11px;
+
+  b {
+    font-family: var(--display);
+    font-weight: 600;
+    font-size: 1.06rem;
+    letter-spacing: -0.022em;
+    color: var(--ink);
+  }
+}
