@@ -59,7 +59,11 @@ keep the shape.
   ("architect and lead engineer"). It needs your detail and a check that
   everything in it is fine to publish. Nothing higher-ed appears anywhere on
   the site — Bard GPS and Enrollify are absent by design.
-- **`otherClients`** at the bottom of the file is the logo-strip placeholder.
+- **Client naming.** `src/content/clients.js` holds 16 fabricated companies
+  driving the `/work` marquee and the logo plates. The names are invented and
+  may collide with real businesses — replace the lot. The three website builds
+  carry a `clientName` and render named; every other study renders the
+  redacted plate. Adding `clientName` to a study is all it takes to name it.
 
 Each study carries an `architecture` object — nodes, edges and steps with
 explicit coordinates. That's what drives the build-on-scroll diagram. Changing

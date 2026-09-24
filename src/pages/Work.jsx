@@ -1,11 +1,13 @@
 import { useState } from "react";
 import { useSearchParams } from "react-router-dom";
-import { caseStudies, otherClients } from "../content/caseStudies.js";
+import { caseStudies } from "../content/caseStudies.js";
+import { clients } from "../content/clients.js";
 import { StudyCard } from "../components/Cards.jsx";
 import Reveal from "../components/Reveal.jsx";
 import PageBanner from "../components/PageBanner.jsx";
 import { SheetRule } from "../components/SectionMarks.jsx";
 import SectionField from "../components/SectionField.jsx";
+import LogoMarquee from "../components/LogoMarquee.jsx";
 
 // Integrations and software first, website builds below, everything else as a
 // logo strip at the bottom. The order is the positioning.
@@ -86,20 +88,23 @@ export default function Work() {
         {shown.length === 0 && <p className="muted">Nothing in that category yet.</p>}
       </section>
 
-      <section className="section--tight wrap has-ground" style={{ paddingBottom: 40 }}>
+      <section className="section--tight wrap has-ground" style={{ paddingBottom: 12 }}>
         <SectionField kind="cross" />
         <p className="eyebrow">And the rest</p>
-        <h3 style={{ maxWidth: "20ch" }}>Websites built for 20+ organisations.</h3>
-        {/* TODO[NEEDS ROBERT]: replace these descriptors with the real client list,
-            or with logos if the agency relationships allow it. */}
-        <div className="logo-wall">
-          {otherClients.map((c) => (
-            <span className="logo-chip" key={c}>
-              {c}
-            </span>
-          ))}
-        </div>
+        <h3 style={{ maxWidth: "22ch" }}>
+          Websites and systems built for {clients.length}+ organizations.
+        </h3>
+        <p className="muted" style={{ maxWidth: "52ch", marginTop: 12 }}>
+          Not every engagement gets a case study. These are the rest of them.
+        </p>
       </section>
+
+      {/* TODO[INVENTED]: fabricated names and generated marks. See
+          src/content/clients.js before this goes anywhere near a prospect. */}
+      <section className="section--tight" style={{ paddingTop: 20, paddingBottom: 40 }}>
+        <LogoMarquee clients={clients} />
+      </section>
+
     </>
   );
 }

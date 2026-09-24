@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { ArrowUpRight } from "./Icons.jsx";
 import Counter from "./Counter.jsx";
+import ClientLogo from "./ClientLogo.jsx";
 
 export function ServiceCard({ service, index }) {
   return (
@@ -24,7 +25,13 @@ export function StudyCard({ study, visual }) {
     <Link to={`/work/${study.slug}`} className="card study-card">
       {visual && <div className="study-card__visual">{visual}</div>}
       <div className="study-card__body">
-        <span className="study-card__meta">{headline.join(" — ")}</span>
+        <ClientLogo
+          name={study.clientName}
+          industry={study.client}
+          redacted={!study.clientName}
+          size="sm"
+        />
+        <span className="study-card__meta">{headline.slice(1).join(" — ")}</span>
         <h3>{study.title}</h3>
         <p>{study.summary}</p>
         <span className="study-card__results">

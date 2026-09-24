@@ -8,6 +8,7 @@ import Architecture from "../components/diagrams/Architecture.jsx";
 import CodeSpecimen from "../components/CodeSpecimen.jsx";
 import PageBanner from "../components/PageBanner.jsx";
 import { ArrowRight } from "../components/Icons.jsx";
+import ClientLogo from "../components/ClientLogo.jsx";
 
 // Six blocks, same every time: header, the problem, what I built, results,
 // stack, CTA. Lead with the problem, never the stack.
@@ -30,8 +31,16 @@ export default function CaseStudy() {
         <p className="lede" style={{ marginTop: 18, maxWidth: "52ch" }}>
           {study.summary}
         </p>
+        <div className="study__client">
+          <ClientLogo
+            name={study.clientName}
+            industry={study.client}
+            redacted={!study.clientName}
+            size="lg"
+          />
+        </div>
+
         <div className="study__meta">
-          <span className="tag">{study.client}</span>
           {study.systems.map((s) => (
             <span className="tag" key={s}>
               {s}

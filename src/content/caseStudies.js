@@ -271,6 +271,8 @@ export const caseStudies = [
 
   {
     slug: "manufacturer-hubdb-catalog",
+    // TODO[NEEDS ROBERT]: only publish a name you have written permission for.
+    clientName: "Ambrose Manufacturing",
     kind: "website",
     client: "Industrial manufacturer",
     systems: ["HubSpot CMS", "HubDB"],
@@ -322,6 +324,8 @@ export const caseStudies = [
 
   {
     slug: "nonprofit-crm-site",
+    // TODO[NEEDS ROBERT]: only publish a name you have written permission for.
+    clientName: "The Larkin Fund",
     kind: "website",
     client: "National nonprofit",
     systems: ["HubSpot CMS", "HubSpot CRM"],
@@ -372,6 +376,8 @@ export const caseStudies = [
 
   {
     slug: "healthcare-network-site",
+    // TODO[NEEDS ROBERT]: only publish a name you have written permission for.
+    clientName: "Wexler Health Network",
     kind: "website",
     client: "Multi-location healthcare network",
     systems: ["HubSpot CMS", "HubDB"],
@@ -424,19 +430,3 @@ export const caseStudies = [
 export const getStudy = (slug) => caseStudies.find((s) => s.slug === slug);
 export const featuredStudies = caseStudies.filter((s) => s.featured);
 export const studiesForService = (slug) => caseStudies.filter((s) => s.serviceSlug === slug);
-
-// TODO[DECISION]: the brief keeps ~3 website builds as full case studies and
-// folds the rest into a logo strip. These are the placeholder names for that
-// strip — replace with the real list, or with logos.
-export const otherClients = [
-  "Regional bank",
-  "Logistics group",
-  "Medical device maker",
-  "Trade association",
-  "Architecture firm",
-  "Staffing network",
-  "Commercial builder",
-  "Equipment rental",
-  "Food manufacturer",
-  "Insurance group",
-];
