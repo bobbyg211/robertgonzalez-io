@@ -53,12 +53,12 @@ function Nav() {
 
       {open && (
         <div className="nav__sheet" id="nav-sheet">
-          <Link to="/work">Work</Link>
           {services.map((s) => (
             <Link key={s.slug} to={`/services/${s.slug}`}>
               {s.name}
             </Link>
           ))}
+          <Link to="/work">Work</Link>
           <Link to="/about">About</Link>
           <Link to="/contact" className="btn btn--primary btn--block">
             Start a project <ArrowRight />
