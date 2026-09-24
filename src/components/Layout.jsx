@@ -2,14 +2,34 @@ import { useEffect, useState } from "react";
 import { Link, NavLink, useLocation } from "react-router-dom";
 import { site, navLinks } from "../content/site.js";
 import { services } from "../content/services.js";
-import { ArrowRight, Menu, Cross } from "./Icons.jsx";
+import { ArrowRight, Menu, Cross, Chevron } from "./Icons.jsx";
 
 function Nav() {
   const [open, setOpen] = useState(false);
+  // The sheet is two levels: the top level, and the services submenu. Listing
+  // all four services at the top level buried Work and About below the fold.
+  const [view, setView] = useState("root");
   const [stuck, setStuck] = useState(false);
   const { pathname } = useLocation();
 
-  useEffect(() => setOpen(false), [pathname]);
+  useEffect(() => {
+    setOpen(false);
+  }, [pathname]);
+
+  // Reset to the top level once the sheet has closed, not while it's closing.
+  useEffect(() => {
+    if (open) return;
+    const t = setTimeout(() => setView("root"), 200);
+    return () => clearTimeout(t);
+  }, [open]);
+
+  // The page behind a full-height sheet shouldn't scroll under it.
+  useEffect(() => {
+    document.body.style.overflow = open ? "hidden" : "";
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [open]);
 
   useEffect(() => {
     const onScroll = () => setStuck(window.scrollY > 8);
@@ -56,7 +76,9 @@ function Nav() {
             )}
           </nav>
 
-          <Link to="/contact" className="btn btn--primary" style={{ padding: "10px 18px" }}>
+          {/* Desktop only. On a phone this crushed the wordmark into two
+              lines and duplicated what the sheet already offers. */}
+          <Link to="/contact" className="btn btn--primary nav__cta">
             Start a project
           </Link>
 
@@ -74,17 +96,44 @@ function Nav() {
 
       {open && (
         <div className="nav__sheet" id="nav-sheet">
-          {services.map((s) => (
-            <Link key={s.slug} to={`/services/${s.slug}`}>
-              {s.name}
-            </Link>
-          ))}
-          <Link to="/services">All services</Link>
-          <Link to="/work">Work</Link>
-          <Link to="/about">About</Link>
-          <Link to="/contact" className="btn btn--primary btn--block">
-            Start a project <ArrowRight />
-          </Link>
+          {view === "root" ? (
+            <>
+              <button
+                type="button"
+                className="nav__row nav__row--parent"
+                onClick={() => setView("services")}
+                aria-expanded={false}
+              >
+                Services
+                <Chevron />
+              </button>
+              <Link to="/work" className="nav__row">
+                Work
+              </Link>
+              <Link to="/about" className="nav__row">
+                About
+              </Link>
+              <Link to="/contact" className="btn btn--primary btn--block nav__sheet-cta">
+                Start a project <ArrowRight />
+              </Link>
+            </>
+          ) : (
+            <>
+              <button type="button" className="nav__back" onClick={() => setView("root")}>
+                <Chevron className="nav__back-arrow" />
+                Services
+              </button>
+              {services.map((svc) => (
+                <Link key={svc.slug} to={`/services/${svc.slug}`} className="nav__row">
+                  {svc.name}
+                  <span className="nav__row-note">{svc.kicker}</span>
+                </Link>
+              ))}
+              <Link to="/services" className="btn btn--ghost btn--block nav__sheet-cta">
+                All services <ArrowRight />
+              </Link>
+            </>
+          )}
         </div>
       )}
     </>
