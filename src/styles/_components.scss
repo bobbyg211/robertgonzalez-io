@@ -681,8 +681,12 @@ a:hover .is-diag {
 }
 
 .is-in .quote::before,
+// The card keeps its rule — it just sits off the border rather than against
+// it, where it read as a seam between two boxes.
 .quote.quote--card::before {
-  content: none;
+  left: -18px;
+  top: 8px;
+  bottom: 8px;
 }
 
 .quote.is-in::before,
