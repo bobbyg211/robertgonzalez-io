@@ -217,9 +217,6 @@ function Footer() {
               <li>
                 <a href={site.github}>GitHub</a>
               </li>
-              <li>
-                <Link to="/brand">Brand marks</Link>
-              </li>
             </ul>
           </div>
         </div>
