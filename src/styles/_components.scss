@@ -456,3 +456,465 @@
   color: var(--flow);
   padding-top: 3px;
 }
+
+// ---------------------------------------------------------------------------
+// Hover behaviour
+// ---------------------------------------------------------------------------
+// The rule for all of it: something moves about 3px, or a line draws. Nothing
+// scales, nothing changes colour dramatically, nothing bounces. It should feel
+// like the page is responding, not performing.
+
+// Any arrow inside any button leans into the direction it points.
+.btn svg {
+  transition: transform 0.22s cubic-bezier(0.22, 0.8, 0.28, 1);
+}
+
+.btn:hover svg {
+  transform: translateX(3px);
+}
+
+.btn--ghost:hover svg,
+.btn--plain:hover svg {
+  transform: translateX(4px);
+}
+
+// Up-right arrows travel diagonally instead.
+.btn:hover .is-diag,
+a:hover .is-diag {
+  transform: translate(3px, -3px);
+}
+
+// Primary button: a hairline sweeps across the top edge, the way a ruled line
+// gets drawn on the sheet.
+.btn--primary {
+  position: relative;
+  overflow: hidden;
+}
+
+.btn--primary::after {
+  content: "";
+  position: absolute;
+  top: 6px;
+  left: 14px;
+  right: 14px;
+  height: 1px;
+  background: currentColor;
+  opacity: 0.22;
+  clip-path: inset(0 100% 0 0);
+  transition: clip-path 0.5s cubic-bezier(0.22, 0.8, 0.28, 1);
+}
+
+.btn--primary:hover::after {
+  clip-path: inset(0 0 0 0);
+}
+
+// Ghost button picks up the grid on hover — a small reward for pointing at it.
+.btn--ghost {
+  background-image: radial-gradient(var(--dot) 0.8px, transparent 0.9px);
+  background-size: 0 0;
+  transition: background-size 0.3s, border-color 0.15s;
+}
+
+.btn--ghost:hover {
+  background-size: 11px 11px;
+}
+
+// Nav: an underline drawn from the left, not a background swap.
+.nav__link {
+  position: relative;
+}
+
+.nav__link::after {
+  content: "";
+  position: absolute;
+  left: 12px;
+  right: 12px;
+  bottom: 4px;
+  height: 1px;
+  background: var(--flow);
+  clip-path: inset(0 100% 0 0);
+  transition: clip-path 0.4s cubic-bezier(0.22, 0.8, 0.28, 1);
+}
+
+.nav__link:hover::after,
+.nav__link[aria-current="page"]::after {
+  clip-path: inset(0 0 0 0);
+}
+
+// The brand dot draws a ring when you point at the logo.
+.nav__brand:hover .nav__dot {
+  box-shadow: 0 0 0 5px var(--flow-soft);
+  transition: box-shadow 0.25s;
+}
+
+// Service card: a rule draws across the top edge, and the grid fades up
+// underneath. Both are the sheet reacting, not the card lifting off it.
+.service-card::before {
+  content: "";
+  position: absolute;
+  top: -1px;
+  left: 18px;
+  right: 18px;
+  height: 1px;
+  background: var(--flow);
+  clip-path: inset(0 100% 0 0);
+  transition: clip-path 0.55s cubic-bezier(0.22, 0.8, 0.28, 1);
+}
+
+.service-card:hover::before {
+  clip-path: inset(0 0 0 0);
+}
+
+.service-card {
+  background-image: radial-gradient(var(--dot) 0.9px, transparent 1px);
+  background-size: 14px 14px;
+  background-position: center;
+  background-repeat: repeat;
+  box-shadow: inset 0 0 0 100vmax var(--surface);
+  transition: transform 0.2s, box-shadow 0.35s, border-color 0.2s;
+}
+
+.service-card:hover {
+  box-shadow: inset 0 0 0 100vmax color-mix(in srgb, var(--surface) 93%, transparent), var(--shadow);
+}
+
+.service-card__index {
+  transition: color 0.2s;
+}
+
+.service-card:hover .service-card__index {
+  color: var(--flow);
+}
+
+// Study card: the meta line gets underlined the way a reference does.
+.study-card__meta {
+  position: relative;
+  display: inline-block;
+}
+
+.study-card__meta::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -3px;
+  border-top: 1px dashed var(--construct);
+  clip-path: inset(0 100% 0 0);
+  transition: clip-path 0.6s cubic-bezier(0.22, 0.8, 0.28, 1);
+}
+
+.study-card:hover .study-card__meta::after {
+  clip-path: inset(0 0 0 0);
+}
+
+.study-card__visual {
+  transition: background-position 0.6s ease;
+  background-image: radial-gradient(var(--dot) 1px, transparent 1.2px);
+  background-size: 22px 22px;
+}
+
+.study-card:hover .study-card__visual {
+  background-position: 11px 11px;
+}
+
+// Chips and tags: the dot is the tell.
+.chip:hover .chip__dot {
+  background: var(--flow);
+  box-shadow: 0 0 0 3px var(--flow-soft);
+  transition: box-shadow 0.2s, background 0.2s;
+}
+
+.logo-chip {
+  transition: transform 0.18s, border-color 0.18s, color 0.18s;
+}
+
+.logo-chip:hover {
+  transform: translateY(-2px);
+  border-color: color-mix(in srgb, var(--flow) 40%, var(--line));
+  color: var(--ink-2);
+}
+
+.tag {
+  transition: border-color 0.18s, background 0.18s;
+}
+
+.tag:hover {
+  border-color: color-mix(in srgb, var(--flow) 35%, var(--line));
+}
+
+// Footer links get their leader line on hover.
+.footer__col a {
+  position: relative;
+  transition: color 0.18s, padding-left 0.22s;
+}
+
+.footer__col a::before {
+  content: "";
+  position: absolute;
+  left: -14px;
+  top: 50%;
+  width: 9px;
+  border-top: 1px dashed var(--flow);
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+.footer__col a:hover {
+  padding-left: 3px;
+}
+
+.footer__col a:hover::before {
+  opacity: 1;
+}
+
+// Stats: pointing at a figure reveals its tick, like a callout being selected.
+.stat {
+  position: relative;
+}
+
+.stat__value {
+  transition: color 0.2s;
+}
+
+.stat:hover .stat__value {
+  color: var(--flow-2);
+}
+
+.stat::before {
+  content: "";
+  position: absolute;
+  left: -10px;
+  top: 4px;
+  bottom: 4px;
+  width: 1px;
+  background: var(--flow);
+  clip-path: inset(100% 0 0 0);
+  transition: clip-path 0.4s cubic-bezier(0.22, 0.8, 0.28, 1);
+}
+
+.stat:hover::before {
+  clip-path: inset(0 0 0 0);
+}
+
+// Quote: the rule redraws itself downward when you read it.
+.quote {
+  border-left-color: var(--line);
+  transition: border-color 0.4s;
+}
+
+.quote::before {
+  content: "";
+  position: absolute;
+  left: -2px;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: var(--flow);
+  clip-path: inset(100% 0 0 0);
+  transition: clip-path 0.9s cubic-bezier(0.22, 0.8, 0.28, 1);
+}
+
+.quote {
+  position: relative;
+}
+
+.is-in .quote::before,
+.quote.is-in::before,
+.quote:hover::before {
+  clip-path: inset(0 0 0 0);
+}
+
+// Registration marks turn a little when the drawing they frame is hovered.
+.sheet .marks svg {
+  transition: transform 0.5s cubic-bezier(0.22, 0.8, 0.28, 1), opacity 0.3s;
+}
+
+.sheet:hover .marks svg {
+  transform: rotate(45deg);
+}
+
+// Step rows in a process list.
+.step {
+  transition: background 0.25s;
+}
+
+.step:hover {
+  background: color-mix(in srgb, var(--canvas-2) 60%, transparent);
+}
+
+.step::before {
+  transition: color 0.2s, transform 0.25s;
+}
+
+.step:hover::before {
+  transform: translateX(3px);
+}
+
+// Deliverable tiles pick up a corner tick.
+.deliverable {
+  position: relative;
+  transition: border-color 0.2s, transform 0.2s;
+}
+
+.deliverable::after {
+  content: "";
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 8px;
+  height: 8px;
+  border-top: 1px solid var(--flow);
+  border-right: 1px solid var(--flow);
+  opacity: 0;
+  transform: translate(-3px, 3px);
+  transition: opacity 0.25s, transform 0.25s;
+}
+
+.deliverable:hover {
+  border-color: color-mix(in srgb, var(--flow) 30%, var(--line));
+  transform: translateY(-2px);
+}
+
+.deliverable:hover::after {
+  opacity: 1;
+  transform: none;
+}
+
+// Checklist ticks draw themselves rather than appearing.
+.checks li svg {
+  transition: transform 0.2s;
+}
+
+.checks li:hover svg {
+  transform: scale(1.15);
+}
+
+@media (hover: none) {
+  // Touch devices get the resting state of everything above — no sticky hover.
+  .service-card:hover,
+  .study-card:hover,
+  .deliverable:hover {
+    transform: none;
+  }
+}
+
+// The brand dot is a status light: the site's one claim that something here is
+// running. A slow ring leaves it, which is the same gesture as the "live"
+// indicator on the diagrams — deliberately, so they read as the same idea.
+.nav__dot {
+  animation: dot-pulse 3.2s cubic-bezier(0.3, 0, 0.2, 1) infinite;
+}
+
+@keyframes dot-pulse {
+  0% {
+    box-shadow: 0 0 0 4px var(--flow-soft), 0 0 0 4px color-mix(in srgb, var(--flow) 34%, transparent);
+  }
+  70% {
+    box-shadow: 0 0 0 4px var(--flow-soft), 0 0 0 12px transparent;
+  }
+  100% {
+    box-shadow: 0 0 0 4px var(--flow-soft), 0 0 0 12px transparent;
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Typed text
+// ---------------------------------------------------------------------------
+// Only ever on mono, annotation-scale text. Never a heading — a headline that
+// types itself withholds the one thing the page is for.
+.typed {
+  font-variant-ligatures: none;
+}
+
+.typed__caret {
+  display: inline-block;
+  width: 0.5em;
+  height: 1em;
+  margin-left: 2px;
+  vertical-align: -0.12em;
+  background: var(--flow);
+  opacity: 0.75;
+  animation: caret 1.1s steps(1) infinite;
+}
+
+@keyframes caret {
+  50% {
+    opacity: 0;
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Code specimen
+// ---------------------------------------------------------------------------
+// Code appears exactly where it explains something a buyer already understands
+// in prose — never as proof of cleverness. Same frame as every other drawing
+// on the site, because it is one.
+.code {
+  font-family: var(--mono);
+  font-size: 0.78rem;
+  line-height: 1.75;
+  background: var(--surface);
+  overflow-x: auto;
+  padding: 16px 0;
+  counter-reset: line;
+  tab-size: 2;
+}
+
+.code__line {
+  display: grid;
+  grid-template-columns: 34px 1fr;
+  gap: 4px;
+  padding-right: 18px;
+  white-space: pre;
+  opacity: 0;
+  transform: translateY(3px);
+  transition: opacity 0.4s, transform 0.4s;
+}
+
+.is-in .code__line {
+  opacity: 1;
+  transform: none;
+}
+
+.code__line:hover {
+  background: color-mix(in srgb, var(--flow-soft) 45%, transparent);
+}
+
+.code__no {
+  text-align: right;
+  color: var(--faint);
+  opacity: 0.6;
+  user-select: none;
+  font-size: 0.72rem;
+}
+
+// Token colours reuse the diagram palette on purpose: a green value in the
+// code is the same green as a record moving in the hero.
+.t-key { color: var(--node); }
+.t-str { color: var(--flow-2); }
+.t-fn { color: var(--ink); font-weight: 500; }
+.t-kw { color: #8b5cf6; }
+.t-num { color: var(--manual); }
+.t-com { color: var(--faint); font-style: italic; }
+.t-p { color: var(--muted); }
+
+.code__foot {
+  border-top: 1px solid var(--line-2);
+  padding: 10px 18px;
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  color: var(--muted);
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  align-items: center;
+}
+
+@media (max-width: 520px) {
+  .code {
+    font-size: 0.7rem;
+  }
+  .code__line {
+    grid-template-columns: 26px 1fr;
+  }
+}

@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { Defs, DNode } from "./parts.jsx";
 import { useReducedMotion, useInView } from "../../hooks/useMotion.js";
+import Typed from "../Typed.jsx";
 
 // The hero. A buyer who can't define "integration" should understand it after
 // five seconds of watching: records leave one system, pass through something
@@ -130,7 +131,9 @@ export default function HeroFlow() {
   return (
     <div className="diagram sheet" ref={wrapRef}>
       <div className="diagram__bar">
-        <span>Fig. 01 — one record, end to end</span>
+        <span>
+          <Typed text="Fig. 01 — one record, end to end" speed={22} startDelay={500} caret={false} />
+        </span>
         <span className="diagram__live">
           <span className="diagram__pulse" />
           {reduced ? "static" : "live"}
@@ -148,7 +151,7 @@ export default function HeroFlow() {
           <Defs id="hero" />
 
           {/* construction lines: the drafting underlay, not decoration */}
-          <g className="dash">
+          <g className="dash march">
             <path d={`M84 8 V48`} />
             <path d={`M496 8 V48`} />
             <path d={`M290 140 V186`} />
@@ -168,7 +171,7 @@ export default function HeroFlow() {
           <g color="var(--flow)">
             <path id="p-in" d={P_IN} fill="none" stroke="var(--flow)" strokeWidth="1.3" opacity="0.5" />
             <path id="p-out" d={P_OUT} fill="none" stroke="var(--flow)" strokeWidth="1.3" opacity="0.5" markerEnd="url(#hero-arrow)" />
-            <path id="p-back" d={P_BACK} fill="none" stroke="var(--node)" strokeWidth="1.2" strokeDasharray="4 4" opacity="0.45" markerEnd="url(#hero-arrow)" />
+            <path id="p-back" d={P_BACK} fill="none" stroke="var(--node)" strokeWidth="1.2" strokeDasharray="4 4" opacity="0.45" className="march--rev" markerEnd="url(#hero-arrow)" />
           </g>
 
           {NODES.map((n) => (

@@ -5,6 +5,8 @@ import { StudyCard } from "../components/Cards.jsx";
 import Counter from "../components/Counter.jsx";
 import Reveal from "../components/Reveal.jsx";
 import Architecture from "../components/diagrams/Architecture.jsx";
+import CodeSpecimen from "../components/CodeSpecimen.jsx";
+import PageBanner from "../components/PageBanner.jsx";
 import { ArrowRight } from "../components/Icons.jsx";
 
 // Six blocks, same every time: header, the problem, what I built, results,
@@ -20,9 +22,9 @@ export default function CaseStudy() {
   const related = caseStudies.filter((s) => s.slug !== slug && s.kind === study.kind).slice(0, 2);
 
   return (
-    <article className="study wrap">
+    <article className="study">
       {/* 01 — header */}
-      <header className="study__header">
+      <PageBanner sheet="04" label={study.kind === "website" ? "website build" : "case study"}>
         <p className="eyebrow">{study.serviceLabel}</p>
         <h1 style={{ maxWidth: "20ch" }}>{study.title}</h1>
         <p className="lede" style={{ marginTop: 18, maxWidth: "52ch" }}>
@@ -37,7 +39,9 @@ export default function CaseStudy() {
           ))}
           {study.role && <span className="tag tag--flow">Role, not ownership</span>}
         </div>
-      </header>
+      </PageBanner>
+
+      <div className="wrap">
 
       {/* 02 — the problem */}
       <section className="study__block">
@@ -66,6 +70,12 @@ export default function CaseStudy() {
             <p key={p.slice(0, 24)}>{p}</p>
           ))}
         </div>
+
+        {study.code && (
+          <div style={{ marginTop: 30, maxWidth: 640 }}>
+            <CodeSpecimen name={study.code} figure="Fig. 03" />
+          </div>
+        )}
       </section>
 
       {/* 04 — results */}
@@ -124,6 +134,7 @@ export default function CaseStudy() {
           </div>
         </section>
       )}
+      </div>
     </article>
   );
 }

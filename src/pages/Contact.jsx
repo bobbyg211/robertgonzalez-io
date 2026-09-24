@@ -3,6 +3,7 @@ import { useSearchParams } from "react-router-dom";
 import { services, rush, getService } from "../content/services.js";
 import { systems, getSystem } from "../content/systems.js";
 import Reveal from "../components/Reveal.jsx";
+import PageBanner from "../components/PageBanner.jsx";
 import { ArrowRight, Check } from "../components/Icons.jsx";
 
 // A qualifying form, not a single-line contact box. Fewer and better leads is
@@ -95,14 +96,14 @@ export default function Contact() {
 
   return (
     <>
-      <section className="page-head wrap wrap--narrow">
+      <PageBanner sheet="06" label="new project" className="wrap--narrow">
         <p className="eyebrow">Start a project</p>
         <h1>Tell me what&rsquo;s broken.</h1>
         <p className="lede">
           Six questions. They exist so that my first reply can be useful rather than a
           request for the same information.
         </p>
-      </section>
+      </PageBanner>
 
       <section className="section--tight wrap wrap--narrow" style={{ paddingBottom: 60 }}>
         <form className="form" onSubmit={submit}>

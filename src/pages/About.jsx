@@ -3,6 +3,7 @@ import { aboutLong } from "../content/site.js";
 import { getTestimonial } from "../content/testimonials.js";
 import Quote from "../components/Quote.jsx";
 import Reveal from "../components/Reveal.jsx";
+import PageBanner from "../components/PageBanner.jsx";
 import { ArrowRight } from "../components/Icons.jsx";
 
 export default function About() {
@@ -10,10 +11,10 @@ export default function About() {
 
   return (
     <>
-      <section className="page-head wrap">
+      <PageBanner sheet="05" label="about">
         <p className="eyebrow">About</p>
         <h1>{aboutLong.heading}</h1>
-      </section>
+      </PageBanner>
 
       <section className="section--tight wrap">
         <div className="split split--sidebar">

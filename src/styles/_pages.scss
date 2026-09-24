@@ -4,6 +4,11 @@
   padding-bottom: clamp(30px, 5vw, 56px);
 }
 
+// The hero is itself a banner, so the two paddings would otherwise stack.
+.banner.hero {
+  padding-top: clamp(26px, 4vw, 48px);
+}
+
 .hero__grid {
   display: grid;
   gap: clamp(28px, 5vw, 52px);

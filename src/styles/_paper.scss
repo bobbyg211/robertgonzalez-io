@@ -155,3 +155,156 @@
   -webkit-mask-image: linear-gradient(to bottom, transparent, #000 18%, #000 82%, transparent);
   mask-image: linear-gradient(to bottom, transparent, #000 18%, #000 82%, transparent);
 }
+
+// ---------------------------------------------------------------------------
+// Drawn-in lines
+// ---------------------------------------------------------------------------
+// A dotted line can't be drawn with stroke-dashoffset — the dash pattern is
+// already using it. So the line is clipped instead and the clip opens, which
+// reads exactly like a pen travelling across the sheet and works on dotted,
+// dashed and solid alike.
+.draw-x {
+  clip-path: inset(0 100% 0 0);
+  transition: clip-path 1.1s cubic-bezier(0.22, 0.8, 0.28, 1);
+}
+
+.is-in .draw-x,
+.draw-x.is-in {
+  clip-path: inset(0 0 0 0);
+}
+
+.draw-x--slow {
+  transition-duration: 1.8s;
+}
+
+// Solid strokes get the real thing.
+.draw-stroke {
+  stroke-dasharray: var(--len, 400);
+  stroke-dashoffset: var(--len, 400);
+  transition: stroke-dashoffset 1.2s cubic-bezier(0.22, 0.8, 0.28, 1);
+}
+
+.is-in .draw-stroke {
+  stroke-dashoffset: 0;
+}
+
+// A construction line that's alive: the dashes march very slowly. Below the
+// threshold where it reads as animation — it just stops the drawing feeling
+// like a screenshot.
+.march {
+  animation: march 9s linear infinite;
+}
+
+.march--rev {
+  animation: march 12s linear infinite reverse;
+}
+
+@keyframes march {
+  to {
+    stroke-dashoffset: -28;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .draw-x {
+    clip-path: none;
+  }
+  .draw-stroke {
+    stroke-dashoffset: 0;
+  }
+  .march,
+  .march--rev {
+    animation: none;
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Page banner — the sheet header
+// ---------------------------------------------------------------------------
+// The grid was too shy before. Every page now opens on a framed band of it:
+// same weight, just present instead of hinted at. Corner registration marks,
+// a dimension line across the top with end ticks, and a sheet number.
+.banner {
+  position: relative;
+  isolation: isolate;
+  padding-top: clamp(30px, 5vw, 54px);
+  padding-bottom: clamp(26px, 4.5vw, 46px);
+}
+
+.banner__field {
+  position: absolute;
+  inset: 0;
+  left: 50%;
+  width: 100vw;
+  transform: translateX(-50%);
+  z-index: -1;
+  pointer-events: none;
+  background-image:
+    linear-gradient(to right, var(--grid) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--grid) 1px, transparent 1px),
+    linear-gradient(to right, var(--grid-major) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--grid-major) 1px, transparent 1px);
+  background-size: 8px 8px, 8px 8px, 48px 48px, 48px 48px;
+  background-position: center top;
+  -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 55%, transparent 100%);
+  mask-image: linear-gradient(to bottom, #000 0%, #000 55%, transparent 100%);
+}
+
+// The measured edge along the top of the sheet.
+.banner__dim {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: clamp(22px, 3.5vw, 34px);
+  color: var(--muted);
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.banner__rule {
+  flex: 1;
+  height: 7px;
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 3px 0 auto;
+    border-top: 1px dashed var(--construct);
+  }
+
+  // End ticks, like a dimension line.
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0 0 0 auto;
+    width: 1px;
+    height: 7px;
+    background: var(--construct);
+  }
+}
+
+.banner__rule--start::after {
+  inset: 0 auto 0 0;
+}
+
+.banner__sheet {
+  color: var(--flow-2);
+  white-space: nowrap;
+}
+
+// Corner marks pinned to the content column rather than the viewport, so the
+// frame lines up with the text instead of floating.
+.banner .marks {
+  inset: 10px -14px auto;
+  height: 100%;
+}
+
+@media (max-width: 600px) {
+  .banner .marks {
+    display: none;
+  }
+}

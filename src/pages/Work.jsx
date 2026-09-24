@@ -3,6 +3,7 @@ import { useSearchParams } from "react-router-dom";
 import { caseStudies, otherClients } from "../content/caseStudies.js";
 import { StudyCard } from "../components/Cards.jsx";
 import Reveal from "../components/Reveal.jsx";
+import PageBanner from "../components/PageBanner.jsx";
 
 // Integrations and software first, website builds below, everything else as a
 // logo strip at the bottom. The order is the positioning.
@@ -24,14 +25,14 @@ export default function Work() {
 
   return (
     <>
-      <section className="page-head wrap">
+      <PageBanner sheet="03" label="selected work">
         <p className="eyebrow">Case studies</p>
         <h1>The work, and what it changed.</h1>
         <p className="lede">
           Integration clients are described by industry and the systems involved rather
           than named. Everything here leads with the problem, not the stack.
         </p>
-      </section>
+      </PageBanner>
 
       <section className="wrap section--tight">
         <div className="work-filters" role="group" aria-label="Filter case studies">

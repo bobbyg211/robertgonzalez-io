@@ -44,6 +44,7 @@ export const caseStudies = [
     ],
     stack: ["Node", "TypeScript", "NetSuite SuiteQL", "HubSpot API v3", "Postgres", "Fly.io"],
     fig: "NetSuite ↔ HubSpot, bidirectional with reconciliation",
+    code: "reconcile",
     architecture: {
       viewBox: "0 0 620 380",
       nodes: [
@@ -114,6 +115,7 @@ export const caseStudies = [
     ],
     stack: ["Node", "Salesforce REST", "DocuSign eSignature", "Redis queue", "Postgres"],
     fig: "One intake, three destinations, one audit trail",
+    code: "retry",
     architecture: {
       viewBox: "0 0 620 380",
       nodes: [
@@ -176,6 +178,7 @@ export const caseStudies = [
     ],
     stack: ["React", "Node", "Postgres", "QuickBooks API", "Twilio", "Render"],
     fig: "Visit-level scheduling with an append-only history",
+    code: "constraint",
     architecture: {
       viewBox: "0 0 620 380",
       nodes: [

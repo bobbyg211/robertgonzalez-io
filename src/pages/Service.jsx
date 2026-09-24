@@ -6,6 +6,8 @@ import { StudyCard } from "../components/Cards.jsx";
 import Quote from "../components/Quote.jsx";
 import Reveal from "../components/Reveal.jsx";
 import BlueprintPreview from "../components/diagrams/BlueprintPreview.jsx";
+import CodeSpecimen from "../components/CodeSpecimen.jsx";
+import PageBanner from "../components/PageBanner.jsx";
 import { ArrowRight, Check } from "../components/Icons.jsx";
 
 // Same skeleton on all four: the problem, what's delivered, the process, a
@@ -23,9 +25,17 @@ export default function Service() {
   const nextService = getService(service.next?.slug);
   const isBlueprint = slug === "integration-blueprint";
 
+  // Code appears on two of the four service pages. Sprinkled, not standard —
+  // a specimen on every page stops being an aside and becomes the argument.
+  const specimen = { "integration-blueprint": "fieldMap", "system-integrations": "retry" }[slug];
+  const specimenNote = {
+    "integration-blueprint": "The field specification, as the thing it becomes.",
+    "system-integrations": "What \u201cerror handling\u201d actually means.",
+  }[slug];
+
   return (
     <>
-      <section className="page-head wrap">
+      <PageBanner sheet="02" label={service.name.toLowerCase()}>
         <p className="eyebrow">{service.kicker}</p>
         <h1>{service.name}</h1>
         <p className="lede">{service.lede}</p>
@@ -37,7 +47,7 @@ export default function Service() {
             {service.price} · {service.priceNote}
           </span>
         </div>
-      </section>
+      </PageBanner>
 
       <section className="section section--paper">
         <div className="wrap split">
@@ -70,6 +80,23 @@ export default function Service() {
             <b>Fig. 04</b> Statement of work, entity relationships, field specification,
             failure handling. Swipe or use the arrows.
           </p>
+        </section>
+      )}
+
+      {specimen && (
+        <section className="section--tight wrap">
+          <div className="split" style={{ alignItems: "center" }}>
+            <Reveal>
+              <p className="eyebrow">For the technical reader</p>
+              <h3>{specimenNote}</h3>
+              <p className="muted" style={{ marginTop: 12, fontSize: "0.96rem" }}>
+                Skip this if it isn&rsquo;t your job. Nothing above depends on it.
+              </p>
+            </Reveal>
+            <Reveal delay={80}>
+              <CodeSpecimen name={specimen} />
+            </Reveal>
+          </div>
         </section>
       )}
 

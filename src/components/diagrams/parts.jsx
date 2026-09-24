@@ -100,6 +100,7 @@ export function DEdge({ edge, defsId = "d", dim = false }) {
   return (
     <g opacity={dim ? 0.18 : 1} style={{ transition: "opacity .45s" }} color={s.stroke}>
       <path
+        className={edge.kind === "dotted" || edge.kind === "warn" ? "march" : undefined}
         d={edge.d}
         fill="none"
         stroke={s.stroke}

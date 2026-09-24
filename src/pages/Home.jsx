@@ -8,6 +8,9 @@ import Quote from "../components/Quote.jsx";
 import Counter from "../components/Counter.jsx";
 import Reveal from "../components/Reveal.jsx";
 import Marks from "../components/Marks.jsx";
+import PageBanner from "../components/PageBanner.jsx";
+import Typed from "../components/Typed.jsx";
+import CodeSpecimen from "../components/CodeSpecimen.jsx";
 import HeroFlow from "../components/diagrams/HeroFlow.jsx";
 import BeforeAfter from "../components/diagrams/BeforeAfter.jsx";
 import SystemPicker from "../components/diagrams/SystemPicker.jsx";
@@ -18,7 +21,7 @@ export default function Home() {
 
   return (
     <>
-      <section className="hero wrap">
+      <PageBanner sheet="01" label="integration engineering" className="hero">
         <div className="hero__grid">
           <div className="hero__copy">
             <p className="eyebrow">Integrations · Custom software</p>
@@ -39,7 +42,7 @@ export default function Home() {
             {hero.note && (
               <p className="hero__note">
                 <span className="nav__dot" aria-hidden="true" />
-                {hero.note}
+                <Typed text={hero.note} speed={26} startDelay={900} />
               </p>
             )}
           </div>
@@ -49,7 +52,7 @@ export default function Home() {
             <HeroFlow />
           </div>
         </div>
-      </section>
+      </PageBanner>
 
       <section className="wrap section--tight">
         <div className="proof">
@@ -124,6 +127,25 @@ export default function Home() {
           </Reveal>
           <Reveal>
             <SystemPicker />
+          </Reveal>
+        </div>
+      </section>
+
+      <section className="section--tight wrap">
+        <div className="split" style={{ alignItems: "center" }}>
+          <Reveal>
+            <p className="eyebrow">Under it</p>
+            <h3 style={{ maxWidth: "20ch" }}>
+              Which system owns a field is a business decision. So it lives somewhere you
+              can read it.
+            </h3>
+            <p className="muted" style={{ marginTop: 14, fontSize: "0.96rem" }}>
+              Not buried in a function somewhere. You don&rsquo;t have to read this — but
+              the person who maintains it after me does.
+            </p>
+          </Reveal>
+          <Reveal delay={80}>
+            <CodeSpecimen name="fieldMap" figure="Fig. 04" />
           </Reveal>
         </div>
       </section>

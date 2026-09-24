@@ -18,8 +18,8 @@ export const ArrowRight = (p) => (
   </svg>
 );
 
-export const ArrowUpRight = (p) => (
-  <svg {...base} {...p}>
+export const ArrowUpRight = ({ className = "", ...p }) => (
+  <svg {...base} className={`is-diag ${className}`.trim()} {...p}>
     <path d="M4.5 11.5 11.5 4.5M5.5 4.5h6v6" />
   </svg>
 );
