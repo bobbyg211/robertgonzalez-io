@@ -501,9 +501,14 @@
 
 // A framed section pushes its content well inside the border. Top and bottom
 // stay looser than the sides, but not by the margin they were.
-.section--framed {
-  padding-block: clamp(56px, 7.5vw, 84px);
-  padding-inline: calc(var(--gutter) + clamp(18px, 3.4vw, 46px));
+//
+// Two classes, not one: .wrap already sets padding-inline at the same
+// specificity and is declared in a later partial, so a single-class selector
+// here loses and the section keeps the plain gutter — which is what put the
+// frame flush against the text.
+.has-field.section--framed {
+  padding-block: clamp(58px, 7.5vw, 86px);
+  padding-inline: calc(var(--gutter) + clamp(22px, 4vw, 56px));
 }
 
 .frame__box {

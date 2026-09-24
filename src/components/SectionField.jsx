@@ -1,4 +1,5 @@
 import { useId } from "react";
+import Typed from "./Typed.jsx";
 
 // Ground for a section. Adjacent sections separate by having different ground
 // rather than by a rule drawn between them.
@@ -60,7 +61,11 @@ function Frame({ label, title }) {
       <span className="frame__c frame__c--tr" />
       <span className="frame__c frame__c--bl" />
       <span className="frame__c frame__c--br" />
-      {title && <span className="frame__title">{title}</span>}
+      {title && (
+        <span className="frame__title">
+          <Typed text={title} caret={false} speed={24} startDelay={350} />
+        </span>
+      )}
       {label && <span className="frame__block">{label}</span>}
     </>
   );
