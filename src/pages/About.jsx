@@ -18,7 +18,7 @@ export default function About() {
       </PageBanner>
 
       <section className="section--tight wrap has-field">
-        <SectionField kind="arcs" fade="corner" />
+        <SectionField kind="projection" fade="y" />
         <div className="split split--sidebar">
           <Reveal className="body-l" style={{ maxWidth: "62ch" }}>
             {aboutLong.body.map((p) => (

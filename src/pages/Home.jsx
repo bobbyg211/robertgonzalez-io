@@ -82,7 +82,7 @@ export default function Home() {
       </section>
 
       <section className="section has-field">
-        <SectionField kind="arcs" fade="corner" />
+        <SectionField kind="projection" fade="y" />
         <div className="wrap">
           <Reveal className="section__head">
             <Plate no="01" label="the problem" />
@@ -155,7 +155,7 @@ export default function Home() {
       </section>
 
       <section className="section wrap has-field">
-        <SectionField kind="rays" fade="end" />
+        <SectionField kind="frame" fade="none" label="plates 01–04" />
         <SheetRule label="fig. 05 — selected plates" cross />
         <Reveal className="section__head" style={{ marginTop: 8 }}>
           <p className="eyebrow">Selected work</p>

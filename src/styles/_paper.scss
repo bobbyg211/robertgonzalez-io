@@ -421,12 +421,143 @@
   opacity: 0.5;
 }
 
-.field--arcs {
-  opacity: 0.42;
+.field--projection,
+.field--frame {
+  opacity: 0.7;
 }
 
-.field--rays {
-  opacity: 0.3;
+// ---- projection guides ----
+// One formula places these at the content column's edge whether the section
+// is itself a .wrap or a full-width section with a .wrap inside it.
+.field--projection {
+  --edge-l: max(var(--gutter), calc((100% - var(--measure)) / 2 + var(--gutter)));
+}
+
+.proj__v {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background-image: linear-gradient(to bottom, var(--construct) 0 5px, transparent 5px 12px);
+}
+
+.proj__v--l {
+  left: var(--edge-l);
+}
+
+.proj__v--r {
+  right: var(--edge-l);
+}
+
+.proj__h {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 34%;
+  height: 1px;
+  background-image: linear-gradient(to right, var(--construct) 0 5px, transparent 5px 12px);
+}
+
+// A tick where two guides meet — the point the projection is carrying over.
+.proj__x {
+  position: absolute;
+  top: 34%;
+  width: 9px;
+  height: 9px;
+  margin: -4px 0 0 -4px;
+  background-image: linear-gradient(var(--tick) 0 0), linear-gradient(var(--tick) 0 0);
+  background-size: 1px 9px, 9px 1px;
+  background-position: center, center;
+  background-repeat: no-repeat;
+  opacity: 0.75;
+}
+
+.proj__x--tl {
+  left: var(--edge-l);
+}
+
+.proj__x--tr {
+  right: var(--edge-l);
+  margin-right: -4px;
+  margin-left: 0;
+}
+
+// ---- sheet border ----
+.field--frame {
+  --edge-l: max(var(--gutter), calc((100% - var(--measure)) / 2 + var(--gutter)));
+}
+
+.frame__box {
+  position: absolute;
+  top: 14px;
+  bottom: 14px;
+  left: calc(var(--edge-l) - 16px);
+  right: calc(var(--edge-l) - 16px);
+  border: 1px dashed var(--construct);
+}
+
+.frame__c {
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  border: 0 solid var(--tick);
+  opacity: 0.8;
+}
+
+.frame__c--tl {
+  top: 14px;
+  left: calc(var(--edge-l) - 16px);
+  border-top-width: 1px;
+  border-left-width: 1px;
+}
+
+.frame__c--tr {
+  top: 14px;
+  right: calc(var(--edge-l) - 16px);
+  border-top-width: 1px;
+  border-right-width: 1px;
+}
+
+.frame__c--bl {
+  bottom: 14px;
+  left: calc(var(--edge-l) - 16px);
+  border-bottom-width: 1px;
+  border-left-width: 1px;
+}
+
+.frame__c--br {
+  bottom: 14px;
+  right: calc(var(--edge-l) - 16px);
+  border-bottom-width: 1px;
+  border-right-width: 1px;
+}
+
+// The title block a drawing sheet carries in its bottom corner.
+.frame__block {
+  position: absolute;
+  bottom: 14px;
+  right: calc(var(--edge-l) - 16px);
+  border: 1px dashed var(--construct);
+  border-right: none;
+  border-bottom: none;
+  padding: 6px 12px;
+  font-family: var(--mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--faint);
+  background: var(--canvas);
+}
+
+@media (max-width: 640px) {
+  .frame__block {
+    display: none;
+  }
+}
+
+.field--fade-none {
+  -webkit-mask-image: none;
+  mask-image: none;
 }
 
 .field--fade-y {

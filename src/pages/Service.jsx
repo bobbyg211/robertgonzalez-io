@@ -52,7 +52,7 @@ export default function Service() {
       </PageBanner>
 
       <section className="section has-field">
-        <SectionField kind="arcs" fade="corner" />
+        <SectionField kind="projection" fade="y" />
         <div className="wrap split">
           <Reveal>
             <p className="eyebrow">The problem</p>
@@ -169,7 +169,7 @@ export default function Service() {
 
       {study && (
         <section className="section wrap has-field">
-          <SectionField kind="rays" fade="end" />
+          <SectionField kind="frame" fade="none" label="worked example" />
           <SheetRule label="fig. 06 — finished example" cross />
           <Reveal className="section__head">
             <p className="eyebrow">Relevant work</p>
