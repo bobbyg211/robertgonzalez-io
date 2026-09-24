@@ -160,6 +160,133 @@ const MARKS = [
       </>
     ),
   },
+  // ---- third round. Crossover won, so this whole set is about lines that
+  // trade places: how they meet, whether they touch, and what the meeting
+  // point is allowed to say.
+  { id: "x-tight", name: "Crossover, tight",
+    why: "The same idea with shorter rails and a steeper cross. More urgent, and it holds its shape better at 16px than the original does.",
+    draw: (w) => (<>
+      <path d="M6 8h4l12 16h4" stroke="currentColor" strokeWidth={w} />
+      <path d="M6 24h4l12-16h4" stroke="var(--flow)" strokeWidth={w} />
+    </>) },
+
+  { id: "x-node", name: "Crossover, node",
+    why: "A node where the two meet. That dot is the whole argument of the site — one place where the systems agree — so it may be worth the extra element.",
+    draw: (w) => (<>
+      <path d="M4 10.5h8l8 11h8" stroke="currentColor" strokeWidth={w} />
+      <path d="M4 21.5h8l8-11h8" stroke="currentColor" strokeWidth={w} />
+      <circle cx="16" cy="16" r={w > 2.4 ? 4.2 : 3.6} fill="var(--flow)" />
+    </>) },
+
+  { id: "x-gap", name: "Crossover, no touch",
+    why: "The schematic convention for two wires that cross without connecting — the horizontal breaks so the vertical can pass. Real drafting grammar, not a borrowed shape.",
+    draw: (w) => (<>
+      <path d="M4 16h8M20 16h8" stroke="currentColor" strokeWidth={w} />
+      <path d="M16 5v22" stroke="var(--flow)" strokeWidth={w} />
+    </>) },
+
+  { id: "x-hop", name: "Hop",
+    why: "The other half of that convention: the line hops over rather than breaking. The most distinctive mark on this page and the most obviously drawn by an engineer.",
+    draw: (w) => (<>
+      <path d="M4 20h8a4 4 0 0 1 8 0h8" stroke="currentColor" strokeWidth={w} />
+      <path d="M16 6v20" stroke="var(--flow)" strokeWidth={w} />
+    </>) },
+
+  { id: "x-round", name: "Crossover, eased",
+    why: "The same swap drawn as two curves rather than two jogs. Softer, more brand than diagram — closer to how the hero animation actually moves.",
+    draw: (w) => (<>
+      <path d="M4 10.5c9 0 15 11 24 11" stroke="currentColor" strokeWidth={w} />
+      <path d="M4 21.5c9 0 15-11 24-11" stroke="var(--flow)" strokeWidth={w} />
+    </>) },
+
+  { id: "x-arrows", name: "Swap",
+    why: "The crossover with heads on it, so the direction is stated rather than implied. Busiest of the set; check it at 16 before you fall for it at 96.",
+    draw: (w) => (<>
+      <path d="M4 10.5h8l8 11h5M25 18l3.5 3.5L25 25" stroke="currentColor" strokeWidth={w} />
+      <path d="M4 21.5h8l8-11h5M25 14l3.5-3.5L25 7" stroke="var(--flow)" strokeWidth={w} />
+    </>) },
+
+  { id: "x-vertical", name: "Crossover, upright",
+    why: "Rotated ninety degrees. Sits better beside a wordmark than a wide mark does, and it stops reading as an arrow.",
+    draw: (w) => (<>
+      <path d="M10.5 4v8l11 8v8" stroke="currentColor" strokeWidth={w} />
+      <path d="M21.5 4v8l-11 8v8" stroke="var(--flow)" strokeWidth={w} />
+    </>) },
+
+  { id: "x-terminals", name: "Crossover, terminated",
+    why: "Ends capped with terminals, the way a drawing marks where a line stops. Gives the mark corners, which helps it sit square in a favicon.",
+    draw: (w) => (<>
+      <path d="M8 10.5h4l8 11h4" stroke="currentColor" strokeWidth={w} />
+      <path d="M8 21.5h4l8-11h4" stroke="var(--flow)" strokeWidth={w} />
+      <path d="M5 8v5M5 19v5M27 8v5M27 19v5" stroke="currentColor" strokeWidth={w} opacity="0.5" />
+    </>) },
+
+  { id: "x-asym", name: "Overpass",
+    why: "One line holds its course, the other crosses it. Asymmetry gives it a subject — something is being carried over something else.",
+    draw: (w) => (<>
+      <path d="M4 20h24" stroke="currentColor" strokeWidth={w} />
+      <path d="M6 26c6 0 4-16 10-16s8 16 10 16" stroke="var(--flow)" strokeWidth={w} />
+    </>) },
+
+  { id: "x-double", name: "Weave",
+    why: "Two crossings instead of one: out and back. Reads as ongoing rather than as a single event, which is what a sync actually is.",
+    draw: (w) => (<>
+      <path d="M4 11h3l6 10h6l6-10h3" stroke="currentColor" strokeWidth={w} />
+      <path d="M4 21h3l6-10h6l6 10h3" stroke="var(--flow)" strokeWidth={w} />
+    </>) },
+
+  { id: "x-lens", name: "Split and merge",
+    why: "Apart, then together again. The shape of a reconciliation — two records that disagree and end up agreeing.",
+    draw: (w) => (<>
+      <path d="M4 16c6 0 6-9 12-9s6 9 12 9" stroke="currentColor" strokeWidth={w} />
+      <path d="M4 16c6 0 6 9 12 9s6-9 12-9" stroke="var(--flow)" strokeWidth={w} />
+    </>) },
+
+  { id: "x-boxed", name: "Crossover, plated",
+    why: "The crossover inside registration corners. Ties the strongest mark to the drafting frame the rest of the site is built on.",
+    draw: (w) => (<>
+      <path d="M4 10V4h6M22 4h6v6M28 22v6h-6M10 28H4v-6" stroke="currentColor" strokeWidth={w * 0.85} opacity="0.55" />
+      <path d="M9 12.5h4l6 7h4" stroke="currentColor" strokeWidth={w} />
+      <path d="M9 19.5h4l6-7h4" stroke="var(--flow)" strokeWidth={w} />
+    </>) },
+
+  { id: "x-bracket", name: "Crossover, bracketed",
+    why: "Held between brackets — the two you liked, combined. Risks being two ideas in one mark rather than one good one.",
+    draw: (w) => (<>
+      <path d="M11 5H5.5v22H11M21 5h5.5v22H21" stroke="currentColor" strokeWidth={w} opacity="0.6" />
+      <path d="M12 11.5h2l4 9h2" stroke="currentColor" strokeWidth={w} />
+      <path d="M12 20.5h2l4-9h2" stroke="var(--flow)" strokeWidth={w} />
+    </>) },
+
+  { id: "x-chevron", name: "Facing",
+    why: "Two chevrons pointing into each other. Less literal than a crossover and more of a monogram — it can be read as a shape rather than a diagram.",
+    draw: (w) => (<>
+      <path d="M6 7l8 9-8 9" stroke="currentColor" strokeWidth={w} />
+      <path d="M26 7l-8 9 8 9" stroke="var(--flow)" strokeWidth={w} />
+    </>) },
+
+  { id: "x-bowtie", name: "Bowtie",
+    why: "The crossover collapsed until the two lines meet at a point. Nearly a letter, which makes it the most logo-like thing here.",
+    draw: (w) => (<>
+      <path d="M6 6v20l10-10z" stroke="currentColor" strokeWidth={w} />
+      <path d="M26 6v20L16 16z" stroke="var(--flow)" strokeWidth={w} />
+    </>) },
+
+  { id: "x-three", name: "Three rails",
+    why: "A third line held straight through the crossing. Says more than two systems, which is closer to the truth of most of these projects.",
+    draw: (w) => (<>
+      <path d="M4 8h8l8 16h8" stroke="currentColor" strokeWidth={w} opacity="0.4" />
+      <path d="M4 24h8l8-16h8" stroke="currentColor" strokeWidth={w} />
+      <path d="M4 16h24" stroke="var(--flow)" strokeWidth={w} />
+    </>) },
+
+  { id: "x-offset", name: "Jog",
+    why: "Not a crossing at all — one line stepping across to the other's lane. The quietest of the set, and the only one that would work as a rule across a page.",
+    draw: (w) => (<>
+      <path d="M4 11h9l6 10h9" stroke="var(--flow)" strokeWidth={w} />
+      <path d="M4 21h9" stroke="currentColor" strokeWidth={w} opacity="0.35" />
+      <path d="M19 11h9" stroke="currentColor" strokeWidth={w} opacity="0.35" />
+    </>) },
 ];
 
 function Mark({ mark, size }) {
