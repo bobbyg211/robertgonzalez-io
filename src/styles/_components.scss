@@ -689,8 +689,9 @@ a:hover .is-diag {
   bottom: 8px;
 }
 
-.quote.is-in::before,
-.quote:hover::before {
+// Drawn once, on arrival, and left drawn. No hover trigger — that was what
+// made it reopen and close at unpredictable moments.
+.quote.is-in::before {
   clip-path: inset(0 0 0 0);
 }
 
