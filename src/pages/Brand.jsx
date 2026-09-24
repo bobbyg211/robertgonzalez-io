@@ -76,6 +76,90 @@ const MARKS = [
       </>
     ),
   },
+  // ---- second round. Bracket was closest, so most of these push on it:
+  // the engineer's glyph, but carrying movement rather than sitting still.
+  {
+    id: "bracketflow",
+    name: "Bracket flow",
+    why: "The bracket with a record travelling through it. Says engineer and integration in one shape, and the arrow breaking the brackets is what stops it reading as a generic code icon.",
+    draw: (w) => (
+      <>
+        <path d="M12 5H5.5v22H12M20 5h6.5v22H20" stroke="currentColor" strokeWidth={w} />
+        <path d="M9 16h14M19.5 12.5 23 16l-3.5 3.5" stroke="var(--flow)" strokeWidth={w} />
+      </>
+    ),
+  },
+  {
+    id: "branch",
+    name: "Branch",
+    why: "One record in, two systems out, with the split marked. The clearest picture of a sync there is, and it survives small because it's three strokes.",
+    draw: (w) => (
+      <>
+        <path d="M4 16h9" stroke="currentColor" strokeWidth={w} />
+        <path d="M13 16c5 0 4-7 9-7h6M13 16c5 0 4 7 9 7h6" stroke="currentColor" strokeWidth={w} />
+        <circle cx="13" cy="16" r={w > 2.4 ? 3.8 : 3.2} fill="var(--flow)" />
+      </>
+    ),
+  },
+  {
+    id: "block",
+    name: "Block",
+    why: "A block-diagram element: two inputs, one output. Lifted straight from the architecture drawings on the case study pages, so it inherits their meaning.",
+    draw: (w) => (
+      <>
+        <rect x="9.5" y="9.5" width="13" height="13" rx="2.2" stroke="currentColor" strokeWidth={w} />
+        <path d="M3.5 13.5h6M3.5 18.5h6" stroke="currentColor" strokeWidth={w} />
+        <path d="M22.5 16h6" stroke="var(--flow)" strokeWidth={w + 0.5} />
+      </>
+    ),
+  },
+  {
+    id: "interlock",
+    name: "Interlock",
+    why: "Two corners overlapping into a shared square. Nothing in it is literal, which is its advantage — it can outlive a change in what you sell.",
+    draw: (w) => (
+      <>
+        <path d="M5 16V5h11" stroke="currentColor" strokeWidth={w} />
+        <path d="M27 16v11H16" stroke="var(--flow)" strokeWidth={w} />
+        <path d="M16 5h11v11M16 27H5V16" stroke="currentColor" strokeWidth={w} opacity="0.25" />
+      </>
+    ),
+  },
+  {
+    id: "crossover",
+    name: "Crossover",
+    why: "Two lines trading places — data going both ways at once. The most movement of anything here, and the least like a stock icon.",
+    draw: (w) => (
+      <>
+        <path d="M4 10.5h8l8 11h8" stroke="currentColor" strokeWidth={w} />
+        <path d="M4 21.5h8l8-11h8" stroke="var(--flow)" strokeWidth={w} />
+      </>
+    ),
+  },
+  {
+    id: "record",
+    name: "Record",
+    why: "A record with one field lit — the hero's field map reduced to three strokes. The quietest option, and the one that works best as a repeating device rather than a logo.",
+    draw: (w) => (
+      <>
+        <path d="M6 10h20" stroke="currentColor" strokeWidth={w + 0.4} />
+        <path d="M6 16h13" stroke="var(--flow)" strokeWidth={w + 0.4} />
+        <path d="M6 22h20" stroke="currentColor" strokeWidth={w + 0.4} opacity="0.4" />
+      </>
+    ),
+  },
+  {
+    id: "keystone",
+    name: "Keystone",
+    why: "Two posts and the piece that joins them. Reads as infrastructure rather than as software, which may be exactly right for operations buyers.",
+    draw: (w) => (
+      <>
+        <path d="M6 27V13M26 27V13" stroke="currentColor" strokeWidth={w} />
+        <path d="M6 13a10 10 0 0 1 20 0" stroke="var(--flow)" strokeWidth={w} />
+        <path d="M16 5v6" stroke="currentColor" strokeWidth={w} opacity="0.35" />
+      </>
+    ),
+  },
 ];
 
 function Mark({ mark, size }) {
