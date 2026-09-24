@@ -507,6 +507,10 @@
 // here loses and the section keeps the plain gutter — which is what put the
 // frame flush against the text.
 .has-field.section--framed {
+  // A framed plate needs air around the frame itself, not just inside it.
+  // Without this the top rule lands 16px under whatever section precedes it,
+  // which reads as the two touching.
+  margin-block: clamp(34px, 5vw, 64px);
   padding-block: clamp(58px, 7.5vw, 86px);
   padding-inline: calc(var(--gutter) + clamp(22px, 4vw, 56px));
 }
