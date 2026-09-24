@@ -1,0 +1,157 @@
+// The drawing language: ink on drafting paper, not blueprint blue.
+// Hairline grid, dotted construction lines, corner registration marks and
+// mono annotations with leader lines. Everything structural is graphite;
+// only live data is --flow green. That contrast is the whole point — the
+// page looks like a technical drawing that one part of has come alive.
+:root {
+  --grid: rgba(18, 22, 27, 0.045);
+  --grid-major: rgba(18, 22, 27, 0.075);
+  --dot: rgba(18, 22, 27, 0.11);
+  --tick: rgba(18, 22, 27, 0.32);
+  --construct: rgba(18, 22, 27, 0.2);
+}
+
+// Fine 8px grid with a heavier 48px module over it, like a drafting sheet.
+.paper {
+  background-image:
+    linear-gradient(to right, var(--grid) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--grid) 1px, transparent 1px),
+    linear-gradient(to right, var(--grid-major) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--grid-major) 1px, transparent 1px);
+  background-size: 8px 8px, 8px 8px, 48px 48px, 48px 48px;
+  background-position: -1px -1px;
+}
+
+.paper--dots {
+  background-image: radial-gradient(var(--dot) 1px, transparent 1.2px);
+  background-size: 22px 22px;
+}
+
+// Fades the sheet out at the edges so it never looks like a table.
+.paper--fade {
+  -webkit-mask-image: radial-gradient(120% 80% at 50% 30%, #000 45%, transparent 100%);
+  mask-image: radial-gradient(120% 80% at 50% 30%, #000 45%, transparent 100%);
+}
+
+.sheet {
+  position: relative;
+}
+
+// Registration marks — the crosses a printer aligns to. Drawn, not decorative:
+// they frame the diagram as a plate on a sheet.
+.marks {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  color: var(--tick);
+}
+
+.marks svg {
+  position: absolute;
+  overflow: visible;
+}
+
+.marks__tl { top: -7px; left: -7px; }
+.marks__tr { top: -7px; right: -7px; }
+.marks__bl { bottom: -7px; left: -7px; }
+.marks__br { bottom: -7px; right: -7px; }
+
+// Mono annotation with a dotted leader, the way a part is called out on a plate.
+.annot {
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.04em;
+  color: var(--muted);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  text-transform: uppercase;
+}
+
+.annot::before {
+  content: "";
+  height: 0;
+  width: 26px;
+  border-top: 1px dashed var(--construct);
+  flex: none;
+}
+
+.annot--fig {
+  color: var(--ink-2);
+
+  b {
+    font-weight: 500;
+    color: var(--flow-2);
+  }
+}
+
+// Figure caption under a drawing: "Fig. 02 — NetSuite → HubSpot, one-way"
+.figcap {
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.03em;
+  color: var(--muted);
+  margin-top: 12px;
+  display: flex;
+  gap: 10px;
+  align-items: baseline;
+
+  b {
+    color: var(--ink-2);
+    font-weight: 500;
+    white-space: nowrap;
+  }
+}
+
+// SVG primitives shared by every diagram.
+.dash {
+  stroke: var(--construct);
+  stroke-width: 1;
+  stroke-dasharray: 3 4;
+  fill: none;
+}
+
+.rule {
+  stroke: var(--line);
+  stroke-width: 1;
+  fill: none;
+}
+
+.ink {
+  stroke: var(--ink);
+  stroke-width: 1.25;
+  fill: none;
+}
+
+.mono-label {
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.06em;
+  fill: var(--faint);
+  text-transform: uppercase;
+}
+
+// Dimension line with end ticks, for "this is the part I'm talking about".
+.dim {
+  stroke: var(--construct);
+  stroke-width: 1;
+  fill: none;
+}
+
+.section--paper {
+  position: relative;
+  isolation: isolate;
+}
+
+.section--paper::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background-image:
+    linear-gradient(to right, var(--grid) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--grid) 1px, transparent 1px);
+  background-size: 48px 48px;
+  -webkit-mask-image: linear-gradient(to bottom, transparent, #000 18%, #000 82%, transparent);
+  mask-image: linear-gradient(to bottom, transparent, #000 18%, #000 82%, transparent);
+}

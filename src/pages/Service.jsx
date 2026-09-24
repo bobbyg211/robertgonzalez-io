@@ -1,0 +1,196 @@
+import { Link, useParams, Navigate } from "react-router-dom";
+import { getService, services, rush } from "../content/services.js";
+import { getStudy } from "../content/caseStudies.js";
+import { getTestimonial, quoteForService } from "../content/testimonials.js";
+import { StudyCard } from "../components/Cards.jsx";
+import Quote from "../components/Quote.jsx";
+import Reveal from "../components/Reveal.jsx";
+import BlueprintPreview from "../components/diagrams/BlueprintPreview.jsx";
+import { ArrowRight, Check } from "../components/Icons.jsx";
+
+// Same skeleton on all four: the problem, what's delivered, the process, a
+// relevant case study, starting price, CTA. These are the pages that rank and
+// the pages sent straight to a prospect, so each one has to stand alone.
+
+export default function Service() {
+  const { slug } = useParams();
+  const service = getService(slug);
+
+  if (!service) return <Navigate to="/" replace />;
+
+  const study = getStudy(service.caseStudy);
+  const quote = getTestimonial(quoteForService[slug]);
+  const nextService = getService(service.next?.slug);
+  const isBlueprint = slug === "integration-blueprint";
+
+  return (
+    <>
+      <section className="page-head wrap">
+        <p className="eyebrow">{service.kicker}</p>
+        <h1>{service.name}</h1>
+        <p className="lede">{service.lede}</p>
+        <div className="btn-row" style={{ marginTop: 26 }}>
+          <Link to={`/contact?service=${service.slug}`} className="btn btn--primary">
+            Start a project <ArrowRight />
+          </Link>
+          <span className="annot" style={{ textTransform: "none" }}>
+            {service.price} · {service.priceNote}
+          </span>
+        </div>
+      </section>
+
+      <section className="section section--paper">
+        <div className="wrap split">
+          <Reveal>
+            <p className="eyebrow">The problem</p>
+            <h2>{service.problem.heading}</h2>
+          </Reveal>
+          <Reveal delay={80} className="body-l">
+            {service.problem.body.map((p) => (
+              <p key={p.slice(0, 24)}>{p}</p>
+            ))}
+          </Reveal>
+        </div>
+      </section>
+
+      {isBlueprint && (
+        <section className="section wrap">
+          <Reveal className="section__head">
+            <p className="eyebrow">What it looks like</p>
+            <h2>An actual Blueprint, anonymised.</h2>
+            <p>
+              Nobody buys a document they&rsquo;ve never seen. Here are four pages from a real
+              one, with the client redacted.
+            </p>
+          </Reveal>
+          <Reveal>
+            <BlueprintPreview />
+          </Reveal>
+          <p className="figcap">
+            <b>Fig. 04</b> Statement of work, entity relationships, field specification,
+            failure handling. Swipe or use the arrows.
+          </p>
+        </section>
+      )}
+
+      <section className="section wrap">
+        <div className="split split--sidebar">
+          <div>
+            <Reveal className="section__head">
+              <p className="eyebrow">What you get</p>
+              <h2>Delivered every time.</h2>
+            </Reveal>
+            <div className="deliverables">
+              {service.deliverables.map((d, i) => (
+                <Reveal key={d.title} delay={i * 50} className="deliverable">
+                  <h4>{d.title}</h4>
+                  <p>{d.body}</p>
+                </Reveal>
+              ))}
+            </div>
+          </div>
+
+          <Reveal delay={120} className="sticky-side">
+            <div className="price-box">
+              <span className="annot" style={{ marginBottom: 4 }}>
+                Starting price
+              </span>
+              <span className="price-box__value">{service.price}</span>
+              <span className="price-box__note">{service.priceNote}</span>
+            </div>
+
+            <ul className="checks">
+              {service.outcomes.map((o) => (
+                <li key={o}>
+                  <Check width="15" height="15" />
+                  {o}
+                </li>
+              ))}
+            </ul>
+
+            {quote && <Quote quote={quote} card />}
+          </Reveal>
+        </div>
+      </section>
+
+      <section className="section section--tinted">
+        <div className="wrap split">
+          <Reveal>
+            <p className="eyebrow">How it runs</p>
+            <h2>The process.</h2>
+            <p className="muted" style={{ marginTop: 14 }}>
+              No surprises in the middle. You know what happens next at every point,
+              including what I need from you.
+            </p>
+          </Reveal>
+          <Reveal delay={80} className="steps">
+            {service.process.map((p) => (
+              <div className="step" key={p.title}>
+                <div>
+                  <h4>{p.title}</h4>
+                  <p>{p.body}</p>
+                </div>
+              </div>
+            ))}
+          </Reveal>
+        </div>
+      </section>
+
+      {study && (
+        <section className="section wrap">
+          <Reveal className="section__head">
+            <p className="eyebrow">Relevant work</p>
+            <h2>What this looks like finished.</h2>
+          </Reveal>
+          <Reveal style={{ maxWidth: 560 }}>
+            <StudyCard study={study} />
+          </Reveal>
+        </section>
+      )}
+
+      <section className="section--tight wrap">
+        <Reveal className="study__cta">
+          <p>
+            {isBlueprint
+              ? "Not sure whether this is an integration or a rebuild? That's exactly what the Blueprint answers."
+              : `Want to talk about ${service.name.toLowerCase()}?`}
+          </p>
+          <div className="btn-row">
+            <Link to={`/contact?service=${service.slug}`} className="btn btn--primary">
+              Start a project <ArrowRight />
+            </Link>
+            {nextService && (
+              <Link to={`/services/${nextService.slug}`} className="btn btn--ghost">
+                {service.next.label}
+              </Link>
+            )}
+          </div>
+        </Reveal>
+      </section>
+
+      <section className="section--tight wrap" style={{ paddingTop: 0 }}>
+        <details className="form__rush">
+          <summary>{rush.summary}</summary>
+          <p>{rush.body}</p>
+        </details>
+      </section>
+
+      <section className="section--tight wrap">
+        <p className="eyebrow">Other services</p>
+        <div className="card-grid" style={{ marginTop: 6 }}>
+          {services
+            .filter((s) => s.slug !== slug)
+            .map((s) => (
+              <Link key={s.slug} to={`/services/${s.slug}`} className="card service-card">
+                <h3>{s.name}</h3>
+                <p>{s.card}</p>
+                <span className="service-card__foot">
+                  <span className="service-card__price">{s.price}</span>
+                </span>
+              </Link>
+            ))}
+        </div>
+      </section>
+    </>
+  );
+}
