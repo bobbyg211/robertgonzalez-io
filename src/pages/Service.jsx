@@ -8,7 +8,7 @@ import Reveal from "../components/Reveal.jsx";
 import BlueprintPreview from "../components/diagrams/BlueprintPreview.jsx";
 import CodeSpecimen from "../components/CodeSpecimen.jsx";
 import PageBanner from "../components/PageBanner.jsx";
-import { SheetRule, Plate } from "../components/SectionMarks.jsx";
+import { Plate } from "../components/SectionMarks.jsx";
 import SectionField from "../components/SectionField.jsx";
 import { ArrowRight, Check } from "../components/Icons.jsx";
 
@@ -168,9 +168,13 @@ export default function Service() {
       </section>
 
       {study && (
-        <section className="section wrap has-field">
-          <SectionField kind="frame" fade="none" label="worked example" />
-          <SheetRule label="fig. 06 — finished example" cross />
+        <section className="section wrap has-field section--framed">
+          <SectionField
+            kind="frame"
+            fade="none"
+            title="Fig. 06 — Finished example"
+            label="worked example"
+          />
           <Reveal className="section__head">
             <p className="eyebrow">Relevant work</p>
             <h2>What this looks like finished.</h2>

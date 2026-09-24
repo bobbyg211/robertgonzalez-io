@@ -421,9 +421,14 @@
   opacity: 0.5;
 }
 
-.field--projection,
-.field--frame {
+.field--projection {
   opacity: 0.7;
+}
+
+// Not dimmed as a whole — the title sitting on the border is real text and
+// has to hold its own contrast.
+.field--frame {
+  opacity: 1;
 }
 
 // ---- projection guides ----
@@ -494,13 +499,43 @@
   --edge-l: max(var(--gutter), calc((100% - var(--measure)) / 2 + var(--gutter)));
 }
 
+// A framed section pushes its content well inside the border. Top and bottom
+// stay looser than the sides, but not by the margin they were.
+.section--framed {
+  padding-block: clamp(56px, 7.5vw, 84px);
+  padding-inline: calc(var(--gutter) + clamp(18px, 3.4vw, 46px));
+}
+
 .frame__box {
   position: absolute;
-  top: 14px;
-  bottom: 14px;
-  left: calc(var(--edge-l) - 16px);
-  right: calc(var(--edge-l) - 16px);
+  top: 16px;
+  bottom: 16px;
+  left: var(--gutter);
+  right: var(--gutter);
   border: 1px dashed var(--construct);
+}
+
+// The figure caption interrupting the top rule.
+.frame__title {
+  position: absolute;
+  top: 16px;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: var(--canvas);
+  padding: 0 16px;
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  color: var(--flow-2);
+}
+
+@media (max-width: 560px) {
+  .frame__title {
+    font-size: 0.6rem;
+    padding: 0 8px;
+  }
 }
 
 .frame__c {
@@ -508,33 +543,33 @@
   width: 14px;
   height: 14px;
   border: 0 solid var(--tick);
-  opacity: 0.8;
+  opacity: 0.55;
 }
 
 .frame__c--tl {
-  top: 14px;
-  left: calc(var(--edge-l) - 16px);
+  top: 16px;
+  left: var(--gutter);
   border-top-width: 1px;
   border-left-width: 1px;
 }
 
 .frame__c--tr {
-  top: 14px;
-  right: calc(var(--edge-l) - 16px);
+  top: 16px;
+  right: var(--gutter);
   border-top-width: 1px;
   border-right-width: 1px;
 }
 
 .frame__c--bl {
-  bottom: 14px;
-  left: calc(var(--edge-l) - 16px);
+  bottom: 16px;
+  left: var(--gutter);
   border-bottom-width: 1px;
   border-left-width: 1px;
 }
 
 .frame__c--br {
-  bottom: 14px;
-  right: calc(var(--edge-l) - 16px);
+  bottom: 16px;
+  right: var(--gutter);
   border-bottom-width: 1px;
   border-right-width: 1px;
 }
@@ -542,8 +577,8 @@
 // The title block a drawing sheet carries in its bottom corner.
 .frame__block {
   position: absolute;
-  bottom: 14px;
-  right: calc(var(--edge-l) - 16px);
+  bottom: 16px;
+  right: var(--gutter);
   border: 1px dashed var(--construct);
   border-right: none;
   border-bottom: none;

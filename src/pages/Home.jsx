@@ -10,7 +10,7 @@ import Reveal from "../components/Reveal.jsx";
 import Marks from "../components/Marks.jsx";
 import PageBanner from "../components/PageBanner.jsx";
 import Typed from "../components/Typed.jsx";
-import { SheetRule, Plate } from "../components/SectionMarks.jsx";
+import { Plate } from "../components/SectionMarks.jsx";
 import SectionField from "../components/SectionField.jsx";
 import CodeSpecimen from "../components/CodeSpecimen.jsx";
 import HeroFlow from "../components/diagrams/HeroFlow.jsx";
@@ -154,10 +154,14 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="section wrap has-field">
-        <SectionField kind="frame" fade="none" label="plates 01–04" />
-        <SheetRule label="fig. 05 — selected plates" cross />
-        <Reveal className="section__head" style={{ marginTop: 8 }}>
+      <section className="section wrap has-field section--framed">
+        <SectionField
+          kind="frame"
+          fade="none"
+          title="Fig. 05 — Selected plates"
+          label="04 plates"
+        />
+        <Reveal className="section__head">
           <p className="eyebrow">Selected work</p>
           <h2>Case studies.</h2>
           <p>

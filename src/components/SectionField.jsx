@@ -45,10 +45,14 @@ function Projection({ side = "right" }) {
   );
 }
 
-// The border ruled around a drawing sheet, with corner brackets and a title
-// block. Built from positioned elements rather than a stretched SVG so the
-// hairlines stay 1px at every section size.
-function Frame({ label }) {
+// The border ruled around a drawing sheet. `title` interrupts the top rule
+// the way a plate is captioned on its own border — which is where a figure
+// number belongs, rather than floating on a line of its own inside the frame.
+// `label` is the title block in the bottom corner.
+//
+// Built from positioned elements rather than a stretched SVG so the hairlines
+// stay 1px at every section size.
+function Frame({ label, title }) {
   return (
     <>
       <span className="frame__box" />
@@ -56,6 +60,7 @@ function Frame({ label }) {
       <span className="frame__c frame__c--tr" />
       <span className="frame__c frame__c--bl" />
       <span className="frame__c frame__c--br" />
+      {title && <span className="frame__title">{title}</span>}
       {label && <span className="frame__block">{label}</span>}
     </>
   );
@@ -63,11 +68,11 @@ function Frame({ label }) {
 
 const KINDS = { cross: Crosses, projection: Projection, frame: Frame };
 
-export default function SectionField({ kind = "cross", fade = "y", label, side }) {
+export default function SectionField({ kind = "cross", fade = "y", label, title, side }) {
   const Field = KINDS[kind] || Crosses;
   return (
     <span className={`field field--${kind} field--fade-${fade}`} aria-hidden="true">
-      <Field label={label} side={side} />
+      <Field label={label} title={title} side={side} />
     </span>
   );
 }
