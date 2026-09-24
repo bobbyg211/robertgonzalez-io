@@ -35,6 +35,8 @@ In `src/content/services.js`, search `price:`.
 | Service | Placeholder | Decide |
 |---|---|---|
 | Integration Blueprint | $3,500 flat | flat fee, credited against the build |
+| Code Audit | $4,500 flat | flat fee, credited against the build |
+| Prototype to Production | from $15,000 | |
 | System Integrations | from $12,000 | primary revenue service |
 | Custom Web Apps | from $18,000 | |
 | HubSpot Websites | from $7,500 | volume service |
@@ -52,6 +54,10 @@ header → problem → what I built → results → stack → CTA. Swap the cont
 keep the shape.
 
 - **Pick the real integration/SaaS studies.** Open item from the brief.
+- **`rental-ops-tool-rescue`** is fabricated end to end and is the only case
+  study for the two new services. It needs a real engagement, or the two
+  services launch without one — which is survivable for Code Audit and weak
+  for Prototype to Production.
 - **Pick the three website builds** worth full case studies (custom HubDB,
   CRM tie-ins, complex templating).
 - **`platform-role-direct-development`** is the one describing real work. It is

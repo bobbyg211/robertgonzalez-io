@@ -23,8 +23,16 @@ const CHOOSER = [
     slug: "custom-web-apps",
   },
   {
+    says: "“Something we built fast is now running the business.”",
+    slug: "prototype-to-production",
+  },
+  {
     says: "“I don't know what this should cost yet.”",
     slug: "integration-blueprint",
+  },
+  {
+    says: "“I don't know if this code is worth saving.”",
+    slug: "code-audit",
   },
   {
     says: "“We need a site on HubSpot that marketing can actually use.”",
@@ -33,29 +41,43 @@ const CHOOSER = [
 ];
 
 export default function Services() {
-  const primary = services.filter((s) => s.primary);
-  const secondary = services.filter((s) => !s.primary);
+  const builds = services.filter((s) => s.tier === "build");
+  const entries = services.filter((s) => s.tier === "entry");
+  const volume = services.filter((s) => s.tier === "volume");
   const bySlug = Object.fromEntries(services.map((s) => [s.slug, s]));
 
   return (
     <>
       <PageBanner sheet="02" label="services">
         <p className="eyebrow">Services</p>
-        <h1>Two things I build, and two ways in.</h1>
+        <h1>Three things I build, and two ways in.</h1>
         <p className="lede">
-          Most engagements are an integration, a custom application, or both — and more
-          often than not they&rsquo;re the same project. Everything is quoted as a fixed
-          price, from a scope somebody has actually looked at.
+          An integration, a custom application, or an existing one taken the rest of the
+          way. Everything is quoted as a fixed price, from a scope somebody has actually
+          read — which is what the two entry offers are for.
         </p>
       </PageBanner>
 
       <section className="section wrap has-ground">
         <SectionField kind="cross" />
 
+        <div className="card-grid card-grid--3">
+          {builds.map((svc, i) => (
+            <Reveal key={svc.slug} delay={i * 70}>
+              <ServiceCard service={svc} index={services.indexOf(svc)} featured />
+            </Reveal>
+          ))}
+        </div>
+
+        <div className="srule" aria-hidden="true">
+          <span className="srule__label srule__label--quiet">two ways in</span>
+          <span className="srule__line srule__line--tick-end draw-x is-in" />
+        </div>
+
         <div className="card-grid">
-          {primary.map((s, i) => (
-            <Reveal key={s.slug} delay={i * 70}>
-              <ServiceCard service={s} index={services.indexOf(s)} featured />
+          {entries.map((svc, i) => (
+            <Reveal key={svc.slug} delay={i * 70}>
+              <ServiceCard service={svc} index={services.indexOf(svc)} />
             </Reveal>
           ))}
         </div>
@@ -66,9 +88,9 @@ export default function Services() {
         </div>
 
         <div className="card-grid">
-          {secondary.map((s, i) => (
-            <Reveal key={s.slug} delay={i * 70}>
-              <ServiceCard service={s} index={services.indexOf(s)} />
+          {volume.map((svc) => (
+            <Reveal key={svc.slug}>
+              <ServiceCard service={svc} index={services.indexOf(svc)} />
             </Reveal>
           ))}
         </div>

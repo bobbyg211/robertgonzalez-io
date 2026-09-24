@@ -7,7 +7,7 @@
 export const services = [
   {
     slug: "system-integrations",
-    primary: true,
+    tier: "build",
     name: "System Integrations",
     kicker: "The build",
     card: "Two systems that should be talking and aren't. I build the connection, the error handling, and the monitoring that tells you when it breaks.",
@@ -78,7 +78,7 @@ export const services = [
 
   {
     slug: "custom-web-apps",
-    primary: true,
+    tier: "build",
     name: "Custom Web Apps",
     kicker: "Front to back",
     card: "Internal tools and SaaS products, designed and built end to end — for the process that no off-the-shelf product actually fits.",
@@ -148,7 +148,79 @@ export const services = [
   },
 
   {
+    slug: "prototype-to-production",
+    tier: "build",
+    name: "Prototype to Production",
+    kicker: "Finish the build",
+    card: "Something got built fast and now it runs part of the business. I take it the rest of the way — the data model, the auth, the failure paths, the parts that got skipped.",
+    lede: "The app works in a demo and falls over with real users. I take it from there, without throwing away what already works.",
+    price: "Projects start at $15,000",
+    priceNote: "Quoted fixed from a Code Audit. Never quoted off a demo.",
+    problem: {
+      heading: "The prototype works right up until it's load-bearing.",
+      body: [
+        "Somebody built it quickly — an ops lead with an AI assistant, a contractor on a deadline, a founder before there was a team. It worked, so it stayed. Now forty people use it, it holds data nobody has a backup of, and everyone has quietly agreed not to touch the parts that look frightening.",
+        "The tell is usually the same: it demos beautifully and breaks on real data. One shared login instead of accounts. Keys sitting in the front-end bundle. No migrations, so nobody can change the schema. No error handling, so a failure is a blank screen. None of that is incompetence — it's what gets skipped when the goal is proving the thing works, and skipping it was the right call at the time.",
+        "What's changed is that it's now load-bearing, and the cost of it being wrong has stopped being hypothetical.",
+      ],
+    },
+    deliverables: [
+      {
+        title: "The data model, fixed",
+        body: "Schema corrected and migrations introduced, so the next change is a change rather than a rewrite. Existing data migrated, not discarded.",
+      },
+      {
+        title: "Real accounts and permissions",
+        body: "Individual logins, roles that match how your team works, and an end to the shared password everybody knows.",
+      },
+      {
+        title: "Failure paths",
+        body: "Validation, error handling and retries, so a bad input is a message rather than a blank screen — and so a failure reaches a person.",
+      },
+      {
+        title: "Tests where they earn it",
+        body: "Coverage on the logic that would cost you money if it were wrong. Not a coverage percentage for its own sake.",
+      },
+      {
+        title: "Deploys you can trust",
+        body: "Environments, a repeatable deploy, and backups that have actually been restored from at least once.",
+      },
+      {
+        title: "Documentation and handover",
+        body: "Architecture, runbook and a readable repository — so this is the last time it needs rescuing.",
+      },
+    ],
+    process: [
+      {
+        title: "Audit first",
+        body: "Always. I don't quote a fixed price on a codebase I haven't read, and neither should anyone else.",
+      },
+      {
+        title: "Stop the bleeding",
+        body: "The dangerous things first, in priority order: data loss, access, secrets. Usually the first week or two.",
+      },
+      {
+        title: "Make it changeable",
+        body: "Migrations, structure and tests, so the thing can accept features again instead of resisting them.",
+      },
+      {
+        title: "Then the backlog",
+        body: "Only once it's safe. Features built on an unsound base are how it got here.",
+      },
+    ],
+    outcomes: [
+      "Keeps what works instead of starting over",
+      "Data you could restore if you had to",
+      "A codebase your next developer will accept",
+      "The dangerous things fixed before the nice ones",
+    ],
+    caseStudy: "rental-ops-tool-rescue",
+    next: { slug: "code-audit", label: "Start with the audit" },
+  },
+
+  {
     slug: "integration-blueprint",
+    tier: "entry",
     name: "Integration Blueprint",
     kicker: "The scoping package",
     card: "A scoping package you own outright: statement of work, data model, field-level specs, process flows. Build it with me, or take it to anyone.",
@@ -217,7 +289,78 @@ export const services = [
   },
 
   {
+    slug: "code-audit",
+    tier: "entry",
+    name: "Code Audit",
+    kicker: "The read-through",
+    card: "A week inside the code you already have: what's load-bearing, what's dangerous, and what it would actually cost to finish. Yours to keep.",
+    lede: "Before anyone quotes you a number, somebody reads it. You get a document saying what's there, what's at risk, and what finishing it costs — and you own it.",
+    price: "$4,500 flat",
+    priceNote: "Fixed fee. Credited against the build if you continue with me.",
+    problem: {
+      heading: "Nobody can price finishing it, because nobody has read it.",
+      body: [
+        "You ask what it would take to get this production-ready and you get one of two answers. A developer who hasn't opened the repository gives you a number that will be wrong. Or someone tells you to start over — which is sometimes true and is always the easiest thing to say.",
+        "Neither answer is worth anything, because both are guesses. The only way to know what a codebase costs to finish is for somebody to read it, run it, and try to break it.",
+      ],
+    },
+    deliverables: [
+      {
+        title: "Architecture map",
+        body: "What's actually in there and how it fits together, in plain language — usually the first time anyone has written it down.",
+      },
+      {
+        title: "Risk register",
+        body: "Everything that could lose data, leak it, or take the system down, ranked by how bad and how likely. This is the part that tends to change the conversation.",
+      },
+      {
+        title: "Security review",
+        body: "Auth, access control, exposed keys, and what anyone with the URL can currently do.",
+      },
+      {
+        title: "Keep or rebuild, per piece",
+        body: "Not a verdict on the whole thing. Most of these codebases are two-thirds sound, and the honest answer is which third isn't.",
+      },
+      {
+        title: "Fixed build estimate",
+        body: "A price and sequence to get it production-ready, phased so you can stop after the dangerous parts if you want to.",
+      },
+      {
+        title: "Full ownership",
+        body: "Yours. Finish it with me, hand it to your own team, or use it to hire properly. No retained rights.",
+      },
+    ],
+    process: [
+      {
+        title: "Access and a walkthrough",
+        body: "The repository, the running app, and thirty minutes with whoever built it. No blame in that conversation — it's the fastest way to learn what was deliberate.",
+      },
+      {
+        title: "Read it and run it",
+        body: "I read the code, run it against real-shaped data, and try the things a user will eventually do by accident.",
+      },
+      {
+        title: "Write it up",
+        body: "Architecture, risks, and the estimate — with every judgement call flagged as mine rather than presented as fact.",
+      },
+      {
+        title: "Walkthrough and handoff",
+        body: "We go through it together, I revise once, and it's yours. About a week, start to finish.",
+      },
+    ],
+    outcomes: [
+      "A real number instead of a guess or a shrug",
+      "The dangerous things named before they happen",
+      "A document you can hand to any developer, not just me",
+      "An honest answer on what to keep and what to rebuild",
+    ],
+    caseStudy: "rental-ops-tool-rescue",
+    next: { slug: "prototype-to-production", label: "Ready to finish it?" },
+  },
+
+  {
     slug: "hubspot-websites",
+    tier: "volume",
     name: "HubSpot Websites & CMS",
     kicker: "Built on the CRM, not beside it",
     card: "HubSpot CMS builds where the site is wired into the CRM — custom modules, HubDB, dynamic pages, and templates your marketers can actually use.",

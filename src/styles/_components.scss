@@ -1146,3 +1146,9 @@ a:hover .is-diag {
   line-height: 1.5;
   color: var(--ink-2);
 }
+
+@media (min-width: 900px) {
+  .card-grid--3 {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}

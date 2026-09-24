@@ -210,6 +210,69 @@ export const caseStudies = [
   },
 
   {
+    slug: "rental-ops-tool-rescue",
+    kind: "app",
+    featured: true,
+    client: "Equipment rental operator",
+    systems: ["Internal app", "Postgres", "QuickBooks"],
+    serviceSlug: "prototype-to-production",
+    serviceLabel: "Prototype to production",
+    title: "The tool the ops team built, made safe to depend on",
+    summary:
+      "An operations lead built a dispatch app with an AI assistant. Nine months later forty people ran on it, on one shared login, with no backups. Kept, fixed, and handed over.",
+    problem: [
+      "An operations lead built a dispatch and availability tool over a few weekends with an AI assistant. It was good — it matched how the company actually worked in a way none of the products they'd trialled did, and it spread by word of mouth until every branch was using it.",
+      "By the time anyone looked closely, forty people depended on it daily. There was one shared login, so nobody could tell who had changed what. The database credentials were in the front-end bundle, which meant anyone who opened the developer tools could read every customer record. There were no migrations, so schema changes were made by hand against production. And there were no backups — a fact discovered the week someone deleted a branch's inventory and it could not be brought back.",
+      "The instinct in the room was to throw it away and buy something. That would have cost more, taken a year, and lost the thing that made it work: it fit their process exactly.",
+    ],
+    built: {
+      plain: [
+        "I read it first and wrote up what was sound and what wasn't — about two-thirds of it was fine. The scheduling logic, which was the hard part and the valuable part, barely changed.",
+        "Then, in priority order: backups and a tested restore, real accounts with roles, credentials moved off the client, and migrations so the schema could change safely. After that, validation and error handling, so a bad input is a message instead of a blank screen. Features resumed only once it was safe to build on.",
+      ],
+      technical: [
+        "Credentials were the first morning's work — the front end had been talking to Postgres directly, so everything moved behind an API with row-level authorisation, and every key in the bundle was rotated on the assumption it was already compromised. Auth went to individual accounts with three roles, and the shared login was retired rather than left in place as a fallback.",
+        "The schema was sound enough to keep but had never been versioned. Introducing migrations meant reconstructing the current state as an initial migration and reconciling it against production, which is tedious and is the step that makes every later change routine. Backups were added with a restore rehearsed into a scratch environment — an untested backup is a belief, not a backup.",
+        "The AI-written code itself was mostly fine, which is worth saying plainly. It was readable and reasonably structured. What was missing was everything that only matters once other people depend on it: authorisation, migrations, error handling, and any accounting for the ways real users behave. Those are the parts a prototype legitimately skips, and the parts that have to exist before it can be trusted.",
+      ],
+    },
+    results: [
+      { value: 40, suffix: "", label: "people moved off a shared login" },
+      { value: 68, suffix: "%", label: "of the original code kept", note: "including all scheduling logic" },
+      { value: 11, suffix: "", label: "critical risks closed in the first fortnight" },
+      { value: 1, suffix: "", label: "tested restore, from zero" },
+    ],
+    stack: ["React", "Node", "Postgres", "QuickBooks API", "Fly.io"],
+    fig: "What was kept, what was replaced",
+    code: "constraint",
+    architecture: {
+      viewBox: "0 0 620 360",
+      nodes: [
+        { id: "ui", step: 0, x: 24, y: 40, w: 160, h: 56, label: "The app", sub: "kept · worked", kind: "service" },
+        { id: "db0", step: 0, x: 430, y: 40, w: 166, h: 56, label: "Postgres", sub: "keys in the bundle", kind: "store" },
+        { id: "api", step: 1, x: 232, y: 148, w: 156, h: 60, label: "API", sub: "authorisation", kind: "service" },
+        { id: "auth", step: 2, x: 24, y: 148, w: 160, h: 56, label: "Accounts", sub: "3 roles", kind: "service" },
+        { id: "mig", step: 3, x: 430, y: 148, w: 166, h: 56, label: "Migrations", sub: "versioned", kind: "store" },
+        { id: "bak", step: 3, x: 430, y: 266, w: 166, h: 56, label: "Backups", sub: "restore tested", kind: "store" },
+      ],
+      edges: [
+        { id: "e0", step: 0, d: "M184 68 L430 68", label: "direct, and readable by anyone", kind: "warn" },
+        { id: "e1", step: 1, d: "M104 96 L104 148", label: "", kind: "auto" },
+        { id: "e2", step: 1, d: "M184 178 L232 178", label: "", kind: "auto" },
+        { id: "e3", step: 1, d: "M388 178 L430 178", label: "", kind: "auto" },
+        { id: "e4", step: 2, d: "M310 148 L310 110 L430 110 L430 96", label: "no longer direct", kind: "dotted" },
+        { id: "e5", step: 3, d: "M513 204 L513 266", label: "nightly", kind: "dotted" },
+      ],
+      steps: [
+        { title: "What it was", body: "A good app talking straight to the database, with the credentials to do it sitting in the browser bundle." },
+        { title: "A door with a lock", body: "Everything moved behind an API with row-level authorisation. Keys rotated on the assumption they were already out." },
+        { title: "Who did that", body: "Individual accounts and three roles replaced the shared login, so a change has a name on it." },
+        { title: "Able to change, able to recover", body: "Migrations so the schema can move safely, and a backup someone has actually restored from." },
+      ],
+    },
+  },
+
+  {
     slug: "platform-role-direct-development",
     kind: "integration",
     featured: true,
