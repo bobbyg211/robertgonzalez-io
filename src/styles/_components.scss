@@ -173,6 +173,47 @@
   }
 }
 
+// The two builds carry more weight than the two supporting services: more
+// room, a larger heading, and a line naming the pairing. Same component,
+// weighted — not a second card that has to be maintained alongside it.
+.service-card--featured {
+  padding: 30px;
+  gap: 16px;
+
+  h3 {
+    font-size: clamp(1.35rem, 2.8vw, 1.7rem);
+    letter-spacing: -0.028em;
+  }
+
+  p {
+    font-size: 1.04rem;
+  }
+
+  .service-card__price {
+    font-size: 0.88rem;
+    color: var(--ink);
+  }
+}
+
+.service-card__pair {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  align-self: flex-start;
+  font-family: var(--mono);
+  font-size: 0.66rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--flow-2);
+
+  &::before {
+    content: "";
+    width: 16px;
+    border-top: 1px dashed currentColor;
+    opacity: 0.7;
+  }
+}
+
 .card-grid {
   display: grid;
   gap: 18px;

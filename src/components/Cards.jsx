@@ -3,13 +3,19 @@ import { ArrowUpRight } from "./Icons.jsx";
 import Counter from "./Counter.jsx";
 import ClientLogo from "./ClientLogo.jsx";
 
-export function ServiceCard({ service, index }) {
+export function ServiceCard({ service, index, featured = false }) {
   return (
-    <Link to={`/services/${service.slug}`} className="card service-card">
+    <Link
+      to={`/services/${service.slug}`}
+      className={`card service-card ${featured ? "service-card--featured" : ""}`.trim()}
+    >
       <span className="service-card__index">{String(index + 1).padStart(2, "0")}</span>
       <ArrowUpRight className="service-card__arrow" />
       <h3>{service.name}</h3>
       <p>{service.card}</p>
+      {featured && service.pairsWith && (
+        <span className="service-card__pair">Often the same project as the other</span>
+      )}
       <span className="service-card__foot">
         <span className="service-card__price">{service.price}</span>
         <span className="muted">{service.kicker}</span>

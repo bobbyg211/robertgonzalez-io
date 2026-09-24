@@ -20,6 +20,15 @@ import { ArrowRight } from "../components/Icons.jsx";
 
 export default function Home() {
   const clientQuote = getTestimonial("client-freelance");
+  const primary = services.filter((svc) => svc.primary);
+  const secondary = services.filter((svc) => !svc.primary);
+
+  // One integration and one application, rather than the first two featured —
+  // those were both integrations, which quietly argued that's all I do.
+  const showcase = [
+    featuredStudies.find((svc) => svc.kind === "integration"),
+    featuredStudies.find((svc) => svc.kind === "app"),
+  ].filter(Boolean);
 
   return (
     <>
@@ -110,18 +119,33 @@ export default function Home() {
 
       <section className="section wrap has-ground">
         <SectionField kind="cross" />
-        <Reveal className="section__head">
+        <Reveal className="section__head" style={{ maxWidth: 680 }}>
           <Plate no="02" label="services" />
-          <h2>Four ways to work together.</h2>
+          <h2>Two things I build, and two ways in.</h2>
           <p>
-            Most projects start with a Blueprint, because a fixed price is only honest if
-            somebody has looked at the data first.
+            Most engagements are an integration, a custom application, or both — and more
+            often than not they&rsquo;re the same project. The Blueprint is how either one
+            starts.
           </p>
         </Reveal>
-        <div className="card-grid card-grid--4">
-          {services.map((s, i) => (
-            <Reveal key={s.slug} delay={i * 70}>
-              <ServiceCard service={s} index={i} />
+
+        <div className="card-grid">
+          {primary.map((svc, i) => (
+            <Reveal key={svc.slug} delay={i * 70}>
+              <ServiceCard service={svc} index={services.indexOf(svc)} featured />
+            </Reveal>
+          ))}
+        </div>
+
+        <div className="srule" aria-hidden="true">
+          <span className="srule__label srule__label--quiet">also</span>
+          <span className="srule__line srule__line--tick-end draw-x is-in" />
+        </div>
+
+        <div className="card-grid">
+          {secondary.map((svc, i) => (
+            <Reveal key={svc.slug} delay={i * 70}>
+              <ServiceCard service={svc} index={services.indexOf(svc)} />
             </Reveal>
           ))}
         </div>
@@ -176,7 +200,7 @@ export default function Home() {
         </Reveal>
 
         <div className="card-grid">
-          {featuredStudies.slice(0, 2).map((s) => (
+          {showcase.map((s) => (
             <Reveal key={s.slug}>
               <StudyCard study={s} />
             </Reveal>
