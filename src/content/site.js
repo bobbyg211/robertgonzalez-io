@@ -11,7 +11,7 @@ export const site = {
 
 export const hero = {
   headline: ["I connect the systems", "your business runs on."],
-  lede: "Integrations, internal tools, and the blueprints that make them buildable — for operations-heavy businesses that have outgrown copy and paste.",
+  lede: "Integrations and custom software for operations-heavy businesses that have outgrown copy and paste. Usually the same project.",
   primary: { label: "Start with a Blueprint", to: "/services/integration-blueprint" },
   secondary: { label: "See the work", to: "/work" },
   note: "Currently booking new projects for Q1.", // TODO[INVENTED]: set or delete. No availability labels on services — this is a scheduling note, not a capability label.

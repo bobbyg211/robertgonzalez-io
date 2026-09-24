@@ -6,6 +6,148 @@
 
 export const services = [
   {
+    slug: "system-integrations",
+    primary: true,
+    name: "System Integrations",
+    kicker: "The build",
+    card: "Two systems that should be talking and aren't. I build the connection, the error handling, and the monitoring that tells you when it breaks.",
+    lede: "The build. Your systems exchange data automatically, reconcile themselves when they disagree, and tell someone when they can't.",
+    price: "Projects start at $12,000",
+    priceNote: "Quoted fixed from a Blueprint. Phased billing on longer builds.",
+    problem: {
+      heading: "The cost isn't the typing. It's what the typing gets wrong.",
+      body: [
+        "Someone on your team exports a report, opens two tabs, and retypes records from one system into the other. It's twelve hours a week, and everyone's made peace with that. What nobody's priced is the other half: the order that shipped to the old address, the quote built on stale inventory, the customer who got invoiced twice because two systems each thought they were the source of truth.",
+        "An integration isn't about saving the twelve hours, though it does. It's about there only being one answer to \"what is this customer's address\" — and that answer being right everywhere at once.",
+      ],
+    },
+    deliverables: [
+      {
+        title: "The sync itself",
+        body: "Bidirectional or one-way, on a schedule or event-driven, built against your real objects and real edge cases.",
+      },
+      {
+        title: "Error handling that escalates",
+        body: "Retries with backoff, dead-letter queues for records that can't be saved, and a human alerted when something needs a decision.",
+      },
+      {
+        title: "Reconciliation",
+        body: "A scheduled job that compares both systems and reports drift, so a silent failure can't run for six weeks.",
+      },
+      {
+        title: "Monitoring & logs",
+        body: "A dashboard showing what synced, what didn't, and why — readable by your ops lead, not just by me.",
+      },
+      {
+        title: "Backfill",
+        body: "Existing records migrated and matched, including the deduplication nobody wants to talk about.",
+      },
+      {
+        title: "Documentation & handoff",
+        body: "Architecture, runbook, and credentials rotation, written so your next developer isn't starting from zero.",
+      },
+    ],
+    process: [
+      {
+        title: "Blueprint",
+        body: "Either the Integration Blueprint you already own, or we start there. I don't build off a thirty-minute call.",
+      },
+      {
+        title: "Build in slices",
+        body: "One object at a time, working end to end in a sandbox, so you see real records moving in week two rather than month two.",
+      },
+      {
+        title: "Parallel run",
+        body: "The integration runs alongside the manual process for a cycle. We compare outputs before anything is trusted.",
+      },
+      {
+        title: "Cut over & watch",
+        body: "Manual process retires, monitoring goes live, and I stay on it through the first full cycle.",
+      },
+    ],
+    outcomes: [
+      "One source of truth per field, decided deliberately",
+      "Failures that page a person instead of failing silently",
+      "Hours returned to the team who were doing it by hand",
+      "A system your next developer can actually read",
+    ],
+    caseStudy: "distributor-netsuite-hubspot",
+    next: { slug: "custom-web-apps", label: "Need software, not just a sync?" },
+    pairsWith: "custom-web-apps",
+  },
+
+  {
+    slug: "custom-web-apps",
+    primary: true,
+    name: "Custom Web Apps",
+    kicker: "Front to back",
+    card: "Internal tools and SaaS products, designed and built end to end — for the process that no off-the-shelf product actually fits.",
+    lede: "When the process is the business and no product fits it, the spreadsheet becomes the software. I build the thing that replaces it.",
+    price: "Projects start at $18,000",
+    priceNote: "Quoted fixed by phase. Most first releases land in 8–14 weeks.",
+    problem: {
+      heading: "The spreadsheet works right up until it's load-bearing.",
+      body: [
+        "It started as one person's tracker. Now it's got eleven tabs, four people editing it, a macro nobody understands, and a copy on someone's desktop that may or may not be current. It runs a real part of your business and it has no permissions, no history, no validation, and no backup worth the name.",
+        "You've looked at off-the-shelf tools. They're built for how most companies do this, and the way you do it is the reason you win. Bending your process to fit somebody's product is a real cost, and usually a bigger one than building the tool.",
+      ],
+    },
+    deliverables: [
+      {
+        title: "Product definition",
+        body: "User flows, data model, and a scoped first release that solves the expensive problem rather than every problem.",
+      },
+      {
+        title: "Interface design & build",
+        body: "Designed and built by the same person, so what gets specced is what gets shipped. Responsive and accessible by default.",
+      },
+      {
+        title: "Backend & data model",
+        body: "API, database, background jobs, and the migrations to get your existing data in without losing history.",
+      },
+      {
+        title: "Auth & permissions",
+        body: "Roles that match how your team actually works, including the person who should only ever see their own records.",
+      },
+      {
+        title: "Integrations included",
+        body: "The app talks to the systems you already run. That's the same work as the integration service, done inside the build.",
+      },
+      {
+        title: "Deploy & handover",
+        body: "Hosted, monitored, documented, with a repository you own and a path for whoever maintains it next.",
+      },
+    ],
+    process: [
+      {
+        title: "Shape the first release",
+        body: "We cut scope to the one workflow that costs you most. Everything else goes on a list for later, in writing.",
+      },
+      {
+        title: "Prototype the hard part first",
+        body: "Whatever is riskiest — the data model, the import, the permissions — gets built first, while there's still room to change course.",
+      },
+      {
+        title: "Two-week slices",
+        body: "You use working software every two weeks. Feedback changes the next slice, not a change-order conversation.",
+      },
+      {
+        title: "Launch & stabilise",
+        body: "Real users, real data, and me watching the logs. Then a support arrangement, or a clean handoff to your team.",
+      },
+    ],
+    outcomes: [
+      "A tool that fits your process instead of the other way round",
+      "Permissions, validation, and history the spreadsheet never had",
+      "One first release in weeks, not a year-long platform project",
+      "Code and infrastructure you own outright",
+    ],
+    caseStudy: "field-service-ops-platform",
+    next: { slug: "integration-blueprint", label: "Not sure of the scope yet?" },
+    pairsWith: "system-integrations",
+  },
+
+  {
     slug: "integration-blueprint",
     name: "Integration Blueprint",
     kicker: "The scoping package",
@@ -72,144 +214,6 @@ export const services = [
     ],
     caseStudy: "distributor-netsuite-hubspot",
     next: { slug: "system-integrations", label: "Ready to build? Start here" },
-  },
-
-  {
-    slug: "system-integrations",
-    name: "System Integrations",
-    kicker: "The build",
-    card: "Two systems that should be talking and aren't. I build the connection, the error handling, and the monitoring that tells you when it breaks.",
-    lede: "The build. Your systems exchange data automatically, reconcile themselves when they disagree, and tell someone when they can't.",
-    price: "Projects start at $12,000",
-    priceNote: "Quoted fixed from a Blueprint. Phased billing on longer builds.",
-    problem: {
-      heading: "The cost isn't the typing. It's what the typing gets wrong.",
-      body: [
-        "Someone on your team exports a report, opens two tabs, and retypes records from one system into the other. It's twelve hours a week, and everyone's made peace with that. What nobody's priced is the other half: the order that shipped to the old address, the quote built on stale inventory, the customer who got invoiced twice because two systems each thought they were the source of truth.",
-        "An integration isn't about saving the twelve hours, though it does. It's about there only being one answer to \"what is this customer's address\" — and that answer being right everywhere at once.",
-      ],
-    },
-    deliverables: [
-      {
-        title: "The sync itself",
-        body: "Bidirectional or one-way, on a schedule or event-driven, built against your real objects and real edge cases.",
-      },
-      {
-        title: "Error handling that escalates",
-        body: "Retries with backoff, dead-letter queues for records that can't be saved, and a human alerted when something needs a decision.",
-      },
-      {
-        title: "Reconciliation",
-        body: "A scheduled job that compares both systems and reports drift, so a silent failure can't run for six weeks.",
-      },
-      {
-        title: "Monitoring & logs",
-        body: "A dashboard showing what synced, what didn't, and why — readable by your ops lead, not just by me.",
-      },
-      {
-        title: "Backfill",
-        body: "Existing records migrated and matched, including the deduplication nobody wants to talk about.",
-      },
-      {
-        title: "Documentation & handoff",
-        body: "Architecture, runbook, and credentials rotation, written so your next developer isn't starting from zero.",
-      },
-    ],
-    process: [
-      {
-        title: "Blueprint",
-        body: "Either the Integration Blueprint you already own, or we start there. I don't build off a thirty-minute call.",
-      },
-      {
-        title: "Build in slices",
-        body: "One object at a time, working end to end in a sandbox, so you see real records moving in week two rather than month two.",
-      },
-      {
-        title: "Parallel run",
-        body: "The integration runs alongside the manual process for a cycle. We compare outputs before anything is trusted.",
-      },
-      {
-        title: "Cut over & watch",
-        body: "Manual process retires, monitoring goes live, and I stay on it through the first full cycle.",
-      },
-    ],
-    outcomes: [
-      "One source of truth per field, decided deliberately",
-      "Failures that page a person instead of failing silently",
-      "Hours returned to the team who were doing it by hand",
-      "A system your next developer can actually read",
-    ],
-    caseStudy: "distributor-netsuite-hubspot",
-    next: { slug: "custom-web-apps", label: "Need software, not just a sync?" },
-  },
-
-  {
-    slug: "custom-web-apps",
-    name: "Custom Web Apps",
-    kicker: "Front to back",
-    card: "Internal tools and SaaS products, designed and built end to end — for the process that no off-the-shelf product actually fits.",
-    lede: "When the process is the business and no product fits it, the spreadsheet becomes the software. I build the thing that replaces it.",
-    price: "Projects start at $18,000",
-    priceNote: "Quoted fixed by phase. Most first releases land in 8–14 weeks.",
-    problem: {
-      heading: "The spreadsheet works right up until it's load-bearing.",
-      body: [
-        "It started as one person's tracker. Now it's got eleven tabs, four people editing it, a macro nobody understands, and a copy on someone's desktop that may or may not be current. It runs a real part of your business and it has no permissions, no history, no validation, and no backup worth the name.",
-        "You've looked at off-the-shelf tools. They're built for how most companies do this, and the way you do it is the reason you win. Bending your process to fit somebody's product is a real cost, and usually a bigger one than building the tool.",
-      ],
-    },
-    deliverables: [
-      {
-        title: "Product definition",
-        body: "User flows, data model, and a scoped first release that solves the expensive problem rather than every problem.",
-      },
-      {
-        title: "Interface design & build",
-        body: "Designed and built by the same person, so what gets specced is what gets shipped. Responsive and accessible by default.",
-      },
-      {
-        title: "Backend & data model",
-        body: "API, database, background jobs, and the migrations to get your existing data in without losing history.",
-      },
-      {
-        title: "Auth & permissions",
-        body: "Roles that match how your team actually works, including the person who should only ever see their own records.",
-      },
-      {
-        title: "Integrations included",
-        body: "The app talks to the systems you already run. That's the same work as the integration service, done inside the build.",
-      },
-      {
-        title: "Deploy & handover",
-        body: "Hosted, monitored, documented, with a repository you own and a path for whoever maintains it next.",
-      },
-    ],
-    process: [
-      {
-        title: "Shape the first release",
-        body: "We cut scope to the one workflow that costs you most. Everything else goes on a list for later, in writing.",
-      },
-      {
-        title: "Prototype the hard part first",
-        body: "Whatever is riskiest — the data model, the import, the permissions — gets built first, while there's still room to change course.",
-      },
-      {
-        title: "Two-week slices",
-        body: "You use working software every two weeks. Feedback changes the next slice, not a change-order conversation.",
-      },
-      {
-        title: "Launch & stabilise",
-        body: "Real users, real data, and me watching the logs. Then a support arrangement, or a clean handoff to your team.",
-      },
-    ],
-    outcomes: [
-      "A tool that fits your process instead of the other way round",
-      "Permissions, validation, and history the spreadsheet never had",
-      "One first release in weeks, not a year-long platform project",
-      "Code and infrastructure you own outright",
-    ],
-    caseStudy: "field-service-ops-platform",
-    next: { slug: "integration-blueprint", label: "Not sure of the scope yet?" },
   },
 
   {
