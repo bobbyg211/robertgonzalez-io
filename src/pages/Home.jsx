@@ -10,6 +10,7 @@ import Reveal from "../components/Reveal.jsx";
 import Marks from "../components/Marks.jsx";
 import PageBanner from "../components/PageBanner.jsx";
 import Typed from "../components/Typed.jsx";
+import { SheetRule, Plate } from "../components/SectionMarks.jsx";
 import CodeSpecimen from "../components/CodeSpecimen.jsx";
 import HeroFlow from "../components/diagrams/HeroFlow.jsx";
 import BeforeAfter from "../components/diagrams/BeforeAfter.jsx";
@@ -79,10 +80,14 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="section section--hatch">
+      <div className="wrap">
+        <SheetRule label="fig. 03 — the cost of doing it by hand" cross />
+      </div>
+
+      <section className="section" style={{ paddingTop: 0 }}>
         <div className="wrap">
           <Reveal className="section__head">
-            <p className="eyebrow">The problem, plainly</p>
+            <Plate no="01" label="the problem" />
             <h2>Somebody&rsquo;s whole Tuesday is moving records by hand.</h2>
             <p>
               And the hours aren&rsquo;t even the expensive part — it&rsquo;s the order that
@@ -100,9 +105,13 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="section wrap section--margin">
+      <div className="wrap">
+        <SheetRule label="what I do" align="left" quiet />
+      </div>
+
+      <section className="section wrap" style={{ paddingTop: 12 }}>
         <Reveal className="section__head">
-          <p className="eyebrow">Services</p>
+          <Plate no="02" label="services" />
           <h2>Four ways to work together.</h2>
           <p>
             Most projects start with a Blueprint, because a fixed price is only honest if
@@ -150,7 +159,11 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="section wrap">
+      <div className="wrap">
+        <SheetRule label="fig. 05 — selected plates" cross />
+      </div>
+
+      <section className="section wrap" style={{ paddingTop: 0 }}>
         <Reveal className="section__head">
           <p className="eyebrow">Selected work</p>
           <h2>Case studies.</h2>

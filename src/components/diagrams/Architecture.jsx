@@ -25,7 +25,7 @@ export default function Architecture({ architecture, figure, id = "arch" }) {
               layer {Math.min(active + 1, steps.length)} / {steps.length}
             </span>
           </div>
-          <div className="diagram__body paper--dots">
+          <div className="diagram__body paper">
             <svg viewBox={viewBox} role="img" aria-label={figure} style={{ width: "100%", height: "auto" }}>
               <Defs id={id} />
               {edges.map((e) => (

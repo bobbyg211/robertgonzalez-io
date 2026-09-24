@@ -8,6 +8,7 @@ import Reveal from "../components/Reveal.jsx";
 import BlueprintPreview from "../components/diagrams/BlueprintPreview.jsx";
 import CodeSpecimen from "../components/CodeSpecimen.jsx";
 import PageBanner from "../components/PageBanner.jsx";
+import { SheetRule, Plate } from "../components/SectionMarks.jsx";
 import { ArrowRight, Check } from "../components/Icons.jsx";
 
 // Same skeleton on all four: the problem, what's delivered, the process, a
@@ -49,7 +50,7 @@ export default function Service() {
         </div>
       </PageBanner>
 
-      <section className="section section--hatch">
+      <section className="section">
         <div className="wrap split">
           <Reveal>
             <p className="eyebrow">The problem</p>
@@ -100,11 +101,15 @@ export default function Service() {
         </section>
       )}
 
-      <section className="section wrap section--margin">
+      <div className="wrap">
+        <SheetRule label="deliverables" align="left" quiet />
+      </div>
+
+      <section className="section wrap" style={{ paddingTop: 12 }}>
         <div className="split split--sidebar">
           <div>
             <Reveal className="section__head">
-              <p className="eyebrow">What you get</p>
+              <Plate no="02" label="what you get" />
               <h2>Delivered every time.</h2>
             </Reveal>
             <div className="deliverables">
@@ -143,7 +148,7 @@ export default function Service() {
       <section className="section section--tinted">
         <div className="wrap split">
           <Reveal>
-            <p className="eyebrow">How it runs</p>
+            <Plate no="03" label="process" />
             <h2>The process.</h2>
             <p className="muted" style={{ marginTop: 14 }}>
               No surprises in the middle. You know what happens next at every point,
@@ -165,6 +170,7 @@ export default function Service() {
 
       {study && (
         <section className="section wrap">
+          <SheetRule label="fig. 06 — finished example" cross />
           <Reveal className="section__head">
             <p className="eyebrow">Relevant work</p>
             <h2>What this looks like finished.</h2>

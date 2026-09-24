@@ -18,14 +18,17 @@
 .paper {
   background-image:
     linear-gradient(to right, var(--grid) 1px, transparent 1px),
-    linear-gradient(to bottom, var(--grid) 1px, transparent 1px);
-  background-size: var(--cell) var(--cell);
+    linear-gradient(to bottom, var(--grid) 1px, transparent 1px),
+    linear-gradient(to right, var(--grid-major) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--grid-major) 1px, transparent 1px);
+  background-size: var(--cell) var(--cell), var(--cell) var(--cell),
+    var(--module) var(--module), var(--module) var(--module);
   background-position: 0 0;
 }
 
 .paper--dots {
   background-image: radial-gradient(var(--dot) 1px, transparent 1.2px);
-  background-size: var(--cell) var(--cell);
+  background-size: 11px 11px;
 }
 
 // Fades the sheet out at the edges so it never looks like a table.
@@ -140,70 +143,96 @@
 }
 
 // ---------------------------------------------------------------------------
-// Secondary field treatments
+// Section marks
 // ---------------------------------------------------------------------------
-// The grid belongs to the banner. Reusing it further down a page makes the
-// sheet header stop meaning anything, so sections below get a different mark
-// from the same drawing vocabulary.
+// Sections below the banner are separated by drawn elements, not by another
+// field of background. These are the devices already in the vocabulary — a
+// dimension rule, end ticks, a mono callout, a crosshair — used to break the
+// page into plates. Several can appear on one page; none of them fills an
+// area, so two in a row never read as competing grids.
 
-// Section hatching — the 45° fill a technical drawing uses to mark a cut
-// face. Unmistakably from the same set as the grid, and unmistakably not it.
-.section--hatch {
+.srule {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: var(--muted);
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding-block: clamp(20px, 3vw, 34px);
+}
+
+.srule__label {
+  white-space: nowrap;
+  color: var(--flow-2);
+}
+
+.srule__label--quiet {
+  color: var(--faint);
+}
+
+.srule__line {
+  flex: 1;
+  height: 9px;
   position: relative;
-  isolation: isolate;
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 4px 0 auto;
+    border-top: 1px dashed var(--construct);
+  }
 }
 
-.section--hatch::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: -1;
-  background-image: repeating-linear-gradient(
-    45deg,
-    var(--grid) 0 1px,
-    transparent 1px 11px
-  );
-  -webkit-mask-image: linear-gradient(to bottom, transparent, #000 22%, #000 78%, transparent);
-  mask-image: linear-gradient(to bottom, transparent, #000 22%, #000 78%, transparent);
-}
-
-// Ruled — horizontal hairlines only, like a ledger sheet. Quieter than hatch,
-// for a section that already carries a lot of its own structure.
-.section--ruled {
-  position: relative;
-  isolation: isolate;
-}
-
-.section--ruled::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: -1;
-  background-image: linear-gradient(to bottom, var(--grid) 1px, transparent 1px);
-  background-size: 100% var(--cell);
-  -webkit-mask-image: linear-gradient(to bottom, transparent, #000 25%, #000 75%, transparent);
-  mask-image: linear-gradient(to bottom, transparent, #000 25%, #000 75%, transparent);
-}
-
-// A drafting margin: one vertical rule with ticks down the left of a section.
-// The lightest of the three — it marks a section without filling it.
-.section--margin {
-  position: relative;
-}
-
-.section--margin::before {
+// End ticks turn a rule into a dimension.
+.srule__line--tick-end::after,
+.srule__line--tick-start::after {
   content: "";
   position: absolute;
   top: 0;
-  bottom: 0;
-  left: max(calc((100% - var(--measure)) / 2 + var(--gutter) - 18px), 14px);
   width: 1px;
-  background-image: linear-gradient(to bottom, var(--construct) 0 4px, transparent 4px 12px);
-  opacity: 0.5;
+  height: 9px;
+  background: var(--construct);
 }
 
-@media (max-width: 700px) {
-  .section--margin::before {
-    display: none;
-  }
+.srule__line--tick-end::after {
+  right: 0;
+}
+
+.srule__line--tick-start::after {
+  left: 0;
+}
+
+// A crosshair to pin a section corner.
+.srule__cross {
+  flex: none;
+  color: var(--tick);
+  opacity: 0.6;
+}
+
+// Numbered plate callout: sits above a section head like a figure number.
+.plate {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--faint);
+  margin-bottom: 16px;
+}
+
+.plate__no {
+  color: var(--flow-2);
+  border: 1px solid color-mix(in srgb, var(--flow) 28%, transparent);
+  background: var(--flow-soft);
+  border-radius: 4px;
+  padding: 2px 7px;
+}
+
+.plate__line {
+  width: 40px;
+  border-top: 1px dashed var(--construct);
 }
