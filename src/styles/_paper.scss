@@ -438,7 +438,12 @@
   top: 0;
   bottom: 0;
   width: 1px;
-  background-image: linear-gradient(to bottom, var(--construct) 0 5px, transparent 5px 12px);
+  // background-size + repeat are load-bearing: without them the gradient
+  // stretches over the whole element and everything past the last stop takes
+  // its colour, so only the first 5px of the line ever draws.
+  background-image: linear-gradient(to bottom, var(--tick) 0 6px, transparent 6px 13px);
+  background-size: 1px 13px;
+  background-repeat: repeat-y;
 }
 
 .proj__v--l {
@@ -455,7 +460,9 @@
   right: 0;
   top: 34%;
   height: 1px;
-  background-image: linear-gradient(to right, var(--construct) 0 5px, transparent 5px 12px);
+  background-image: linear-gradient(to right, var(--tick) 0 6px, transparent 6px 13px);
+  background-size: 13px 1px;
+  background-repeat: repeat-x;
 }
 
 // A tick where two guides meet — the point the projection is carrying over.
