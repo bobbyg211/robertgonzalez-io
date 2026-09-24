@@ -76,7 +76,7 @@ const KINDS = { cross: Crosses, projection: Projection, frame: Frame };
 export default function SectionField({ kind = "cross", fade = "y", label, title, side }) {
   const Field = KINDS[kind] || Crosses;
   return (
-    <span className={`field field--${kind} field--fade-${fade}`} aria-hidden="true">
+    <span className={`ground ground--${kind} ground--fade-${fade}`} aria-hidden="true">
       <Field label={label} title={title} side={side} />
     </span>
   );

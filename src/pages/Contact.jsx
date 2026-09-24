@@ -106,7 +106,7 @@ export default function Contact() {
         </p>
       </PageBanner>
 
-      <section className="section--tight wrap wrap--narrow has-field" style={{ paddingBottom: 60 }}>
+      <section className="section--tight wrap wrap--narrow has-ground" style={{ paddingBottom: 60 }}>
         <SectionField kind="cross" />
         <form className="form" onSubmit={submit}>
           <div className="split" style={{ gap: 18 }}>

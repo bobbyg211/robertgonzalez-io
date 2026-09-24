@@ -51,7 +51,7 @@ export default function Service() {
         </div>
       </PageBanner>
 
-      <section className="section has-field">
+      <section className="section has-ground">
         <SectionField kind="projection" side="left" fade="y" />
         <div className="wrap split">
           <Reveal>
@@ -103,7 +103,7 @@ export default function Service() {
         </section>
       )}
 
-      <section className="section wrap has-field">
+      <section className="section wrap has-ground">
         <SectionField kind="cross" />
         <div className="split split--sidebar">
           <div>
@@ -178,7 +178,7 @@ export default function Service() {
       </section>
 
       {study && (
-        <section className="section wrap has-field section--framed">
+        <section className="section wrap has-ground section--framed">
           <SectionField
             kind="frame"
             fade="none"

@@ -86,7 +86,7 @@ export default function Work() {
         {shown.length === 0 && <p className="muted">Nothing in that category yet.</p>}
       </section>
 
-      <section className="section--tight wrap has-field" style={{ paddingBottom: 40 }}>
+      <section className="section--tight wrap has-ground" style={{ paddingBottom: 40 }}>
         <SectionField kind="cross" />
         <p className="eyebrow">And the rest</p>
         <h3 style={{ maxWidth: "20ch" }}>Websites built for 20+ organisations.</h3>

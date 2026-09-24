@@ -81,7 +81,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="section has-field">
+      <section className="section has-ground">
         <SectionField kind="projection" side="right" fade="y" />
         <div className="wrap">
           <Reveal className="section__head">
@@ -103,7 +103,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="section wrap has-field">
+      <section className="section wrap has-ground">
         <SectionField kind="cross" />
         <Reveal className="section__head">
           <Plate no="02" label="services" />
@@ -154,7 +154,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="section wrap has-field section--framed">
+      <section className="section wrap has-ground section--framed">
         <SectionField
           kind="frame"
           fade="none"
@@ -193,7 +193,7 @@ export default function Home() {
         </section>
       )}
 
-      <section className="section wrap has-field">
+      <section className="section wrap has-ground">
         <SectionField kind="cross" />
         <div className="split split--sidebar">
           <Reveal>

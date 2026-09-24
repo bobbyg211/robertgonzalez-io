@@ -397,12 +397,12 @@
 // ground rather than by a rule drawn between them. Never the banner's grid —
 // that mark belongs to the sheet header and the diagram plates, and reusing
 // it further down stops it meaning anything.
-.has-field {
+.has-ground {
   position: relative;
   isolation: isolate;
 }
 
-.field {
+.ground {
   position: absolute;
   inset: 0;
   z-index: -1;
@@ -417,24 +417,24 @@
   }
 }
 
-.field--cross {
+.ground--cross {
   opacity: 0.5;
 }
 
-.field--projection {
+.ground--projection {
   opacity: 0.7;
 }
 
 // Not dimmed as a whole — the title sitting on the border is real text and
 // has to hold its own contrast.
-.field--frame {
+.ground--frame {
   opacity: 1;
 }
 
 // ---- projection guides ----
 // One formula places these at the content column's edge whether the section
 // is itself a .wrap or a full-width section with a .wrap inside it.
-.field--projection {
+.ground--projection {
   --edge-l: max(var(--gutter), calc((100% - var(--measure)) / 2 + var(--gutter)));
 }
 
@@ -495,7 +495,7 @@
 }
 
 // ---- sheet border ----
-.field--frame {
+.ground--frame {
   --edge-l: max(var(--gutter), calc((100% - var(--measure)) / 2 + var(--gutter)));
 }
 
@@ -506,7 +506,7 @@
 // specificity and is declared in a later partial, so a single-class selector
 // here loses and the section keeps the plain gutter — which is what put the
 // frame flush against the text.
-.has-field.section--framed {
+.has-ground.section--framed {
   // A framed plate needs air around the frame itself, not just inside it.
   // Without this the top rule lands 16px under whatever section precedes it,
   // which reads as the two touching.
@@ -606,29 +606,29 @@
   }
 }
 
-.field--fade-none {
+.ground--fade-none {
   -webkit-mask-image: none;
   mask-image: none;
 }
 
-.field--fade-y {
+.ground--fade-y {
   -webkit-mask-image: linear-gradient(to bottom, transparent, #000 20%, #000 80%, transparent);
   mask-image: linear-gradient(to bottom, transparent, #000 20%, #000 80%, transparent);
 }
 
-.field--fade-corner {
+.ground--fade-corner {
   -webkit-mask-image: radial-gradient(90% 110% at 0% 100%, #000 10%, transparent 72%);
   mask-image: radial-gradient(90% 110% at 0% 100%, #000 10%, transparent 72%);
 }
 
-.field--fade-end {
+.ground--fade-end {
   -webkit-mask-image: radial-gradient(85% 120% at 100% 50%, #000 5%, transparent 70%);
   mask-image: radial-gradient(85% 120% at 100% 50%, #000 5%, transparent 70%);
 }
 
 // On a phone the fields compete with the text rather than sitting under it.
 @media (max-width: 640px) {
-  .field {
+  .ground {
     opacity: 0.3;
   }
 }
